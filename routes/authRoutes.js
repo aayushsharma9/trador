@@ -9,8 +9,25 @@ module.exports = app => {
     );
 
     app.get(
+        '/auth/facebook',
+        passport.authenticate('facebook', {
+            scope: ['email', 'public_profile']
+        })
+    );
+
+    app.get(
         '/auth/google/callback',
         passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/surveys');
+        }
+    );
+
+    app.get(
+        'auth/facebook/callback',
+        passport.authenticate('facebook', {
+            failureRedirect: '/'
+        }),
         (req, res) => {
             res.redirect('/surveys');
         }
