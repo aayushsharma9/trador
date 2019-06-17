@@ -21,20 +21,19 @@ async function GoogleStrategyCallback(accessToken, refreshToken, profile, done) 
     if (existingUser) {
         done(null, existingUser);
     } else {
-        const user = await new User({ googleID: profile.id }).save();
+        const user = await new User({ googleID: profile.id, name: profile.displayName  }).save();
         done(null, user);
     }
 }
 
 async function FacebookStrategyCallback(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    // const existingUser = await User.findOne({ facebookID: profile.id });
-    // if (existingUser) {
-    //     done(null, existingUser);
-    // } else {
-    //     const user = await new User({ facebookID: profile.id }).save();
-    //     done(null, user);
-    // }
+    const existingUser = await User.findOne({ facebookID: profile.id });
+    if (existingUser) {
+        done(null, existingUser);
+    } else {
+        const user = await new User({ facebookID: profile.id, name: profile.displayName  }).save();
+        done(null, user);
+    }
 }
 
 passport.use(
@@ -52,7 +51,5 @@ passport.use(
         clientSecret: keys.facebookAppSecret,
         callbackURL: '/auth/facebook/callback',
         proxy: true
-    }, function (accessToken, refreshToken, profile, done) {
-            console.log(profile);
-    })
+    }, FacebookStrategyCallback)
 );

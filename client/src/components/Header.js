@@ -8,9 +8,10 @@ class Header extends Component {
         switch (this.props.auth) {
             case null: return;
             case false:
-                return (
-                    <li><a href='/auth/google'> Sign in with Google </a></li>
-                );
+                return [
+                    <li><a href='/auth/google'> Sign in with Google </a></li>,
+                    <li><a href='/auth/facebook'> Sign in with Facebook </a></li>
+                ];
             default:
                 return [
                     <li key='1'><Payment /></li>,
