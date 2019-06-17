@@ -1,0 +1,23 @@
+.root-container {
+    padding: 2px;
+    margin: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.text {
+    display: inline;
+    font-family: TitleFont;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;  
+    letter-spacing: 1px;
+    margin: 10px;
+    margin-left: 0px;
+    margin-top: 14px;
+}
+
+.image {
+    margin: 10px;
+}

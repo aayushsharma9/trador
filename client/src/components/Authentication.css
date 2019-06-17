@@ -1,0 +1,13 @@
+.root-container {
+    display: flex;
+    background-color: var(--background-color);
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.logo-image {
+    width: 10%;
+    margin-bottom: 30px
+}

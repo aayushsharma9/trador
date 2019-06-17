@@ -1,0 +1,61 @@
+:root {
+    --background-color: #fafcff;
+    --accent-color: #095e73;
+    --on-background-color: #33424d;
+    --on-background-color-faded: #747e87;
+    --error-color: #f7ab2f;
+}
+
+@font-face {
+    font-family: 'TitleFont';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TitleFont'), url(../fonts/Futura-Book.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'TitleFont';
+    font-style: italic;
+    font-weight: bolder;
+    src: local('TitleFont'), url(../fonts/Futura-DemiOblique.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'TitleFont';
+    font-weight: bold;
+    src: local('TitleFont'), url(../fonts/Futura-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'TitleFont';
+    font-weight: bolder;
+    src: local('TitleFont'), url(../fonts/Futura-Demi.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TitleFont'), url(../fonts/SourceSansPro-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    font-style: italic;
+    font-weight: normal;
+    src: local('TitleFont'), url(../fonts/SourceSansPro-Italic.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    font-style: normal;
+    font-weight: bold;
+    src: local('TitleFont'), url(../fonts/SourceSansPro-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    font-weight: bold;
+    font-style: italic;
+    src: local('TitleFont'), url(../fonts/SourceSansPro-SemiBoldItalic.ttf) format('truetype');
+}
