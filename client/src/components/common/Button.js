@@ -1,36 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Button.css';
 
-const Button = ({ href, width, height, backgroundColor, image, imageColor, imageSize, text, textColor }) => {
-    return (
-        <button
-            onClick={() => {
-                window.location.href=href
-            }}
-            className='root-container'
-            style={{
-                width,
-                height,
-                backgroundColor,
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-            }}
-        >
-            <img
-                src={image}
-                className='image'
-                style={{
-                    height: imageSize,
-                    width: imageSize,
-                    resizeMode: 'contain',
-                }}
-                alt=''
-            />
-            <p className='text' style={{ color: textColor }}>{text}</p>
-        </button>
-    );
-};
+class Button extends Component {
+    state = {
+        hover: false
+    }
 
-export { Button };
+    render() {
+        const { href, width, height, backgroundColor, highlightColor, image, imageSize, text, textColor } = this.props;
+        return (
+            <a
+                href={href}
+                className='button-container'
+                onMouseEnter={() => { this.setState({ hover: true }) }}
+                onMouseLeave={() => { this.setState({ hover: false }) }}
+                style={
+                    {   
+                        width,
+                        height,
+                        backgroundColor: this.state.hover ? highlightColor : backgroundColor,
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textDecoration: 'none',
+                    }
+                }
+            >
+                <img
+                    src={image}
+                    className='image'
+                    style={{
+                        height: imageSize,
+                        width: imageSize,
+                        resizeMode: 'contain',
+                    }}
+                    alt=''
+                />
+                <p className='text' style={{ color: textColor }}>{text}</p>
+            </a>
+        );
+    };
+}
+
+export default Button;

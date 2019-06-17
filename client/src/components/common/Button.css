@@ -1,8 +1,9 @@
-.root-container {
-    padding: 2px;
-    margin: 10px;
-    border-width: 1px;
-    border-radius: 5px;
+.button-container {
+    padding: 0em;
+    margin: 0.8em;
+    border-width: 0.1em;
+    border-radius: 0.3em;
+    border-color: var(--on-background-color-faded);
 }
 
 .text {
@@ -11,13 +12,14 @@
     font-weight: normal;
     font-style: normal;
     text-align: center;
-    text-decoration: none;  
+    text-decoration: none;
     letter-spacing: 1px;
-    margin: 10px;
-    margin-left: 0px;
-    margin-top: 14px;
+    font-size: 0.8em;
+    margin: 1em;
+    margin-left: 0;
+    margin-top: 1.4em;
 }
 
 .image {
-    margin: 10px;
+    margin: 1em;
 }

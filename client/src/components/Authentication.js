@@ -6,16 +6,18 @@ import { onbackgroundColor, backgroundColor } from '../values/colors';
 
 const Landing = () => {
     return (
-        <div className='root-container'>
+        <span className='root-container'>
             <img className='logo-image' src={logo} alt='Logo' />        
+            <p className='tagline-text'>Unlimited Classfieds. For Free.</p>
             <Button
                 text='LOGIN WITH GOOGLE'
                 href='/auth/google'
                 image={googleLogo}
                 imageSize={25}
-                width={'15.5%'}
-                height={'7%'}
+                width={'16em'}
+                height={'3em'}
                 backgroundColor='#ffffff'
+                highlightColor='#efefef'
                 textColor={onbackgroundColor}
             />
             <Button
@@ -24,12 +26,13 @@ const Landing = () => {
                 image={facebookLogo}
                 imageColor={onbackgroundColor}
                 imageSize={25}
-                width={'15.5%'}
-                height={'7%'}
+                width={'16em'}
+                height={'3em'}
                 backgroundColor='#3b5998'
+                highlightColor='#4885ed'
                 textColor={backgroundColor}
             />
-        </div>
+        </span>
     );
 };
 
