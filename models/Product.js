@@ -8,7 +8,7 @@ const productSchema = new Schema({
     description: String,
     category: String,
     subCategory: String,
-    // _user: { type: Schema.Types.ObjectId, ref: 'User' },
+    _user: { type: Schema.Types.ObjectId, ref: 'User' },
     datePosted: Date
 });
 
