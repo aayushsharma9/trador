@@ -6,7 +6,7 @@ import '../values/variables.css';
 import Authentication from './Authentication';
 
 const DashBoard = () => <h2>DashBoard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
+const ProductNew = () => <h2>ProductNew</h2>
 
 class App extends Component {
     componentDidMount() {
@@ -19,8 +19,8 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Route exact path='/' component={Authentication} />
-                        <Route exact path='/surveys' component={DashBoard} />
-                        <Route path='/surveys/new' component={SurveyNew} />
+                        <Route exact path='/home' component={DashBoard} />
+                        <Route path='/product/new' component={ProductNew} />
                     </div>
                 </BrowserRouter>
             </div>
