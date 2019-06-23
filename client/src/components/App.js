@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import '../values/variables.css';
 import Authentication from './Authentication';
+import Home from './Home';
+import ProductForm from './ProductForm';
 
-const DashBoard = () => <h2>DashBoard</h2>
-const ProductNew = () => <h2>ProductNew</h2>
 
 class App extends Component {
     componentDidMount() {
@@ -18,14 +18,15 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <Route exact path='/' component={Authentication} />
-                        <Route exact path='/home' component={DashBoard} />
-                        <Route path='/product/new' component={ProductNew} />
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/auth' component={Authentication} />
+                        <Route path='/product/new' component={ProductForm} />
                     </div>
                 </BrowserRouter>
             </div>
         );
     };
 }
+
 
 export default connect(null, actions)(App);

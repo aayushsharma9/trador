@@ -3,7 +3,7 @@ body {
     padding: 0;
 }
 
-.root-container {
+.auth-root-container {
     display: flex;
     background-image: radial-gradient(circle, #9dfffc, #8bf1ed, #79e2dd, #67d4ce, #54c6bf);         /* background-color: var(--background-color); */
     align-items: center;
@@ -12,14 +12,14 @@ body {
     height: 100vh;
 }
 
-.logo-image {
+.auth-logo-image {
     width: 10em;
     margin-bottom: 0.4em
 }
 
-.tagline-text {
-    font-family: BodyFont;
-    font-weight: bold;
+.auth-tagline-text {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
     font-size: 1.2em;
     color: var(--accent-color);
     opacity: 0.7;

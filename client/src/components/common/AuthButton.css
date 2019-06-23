@@ -1,0 +1,25 @@
+.auth-button-container {
+    padding: 0em;
+    margin: 0.8em;
+    border-width: 0.1em;
+    border-radius: 0.3em;
+    border-color: var(--on-background-color-faded);
+}
+
+.auth-button-text {
+    display: inline;
+    font-family: TitleFont;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 0.8em;
+    margin: 1em;
+    margin-left: 0;
+    margin-top: 1.4em;
+}
+
+.auth-button-image {
+    margin: 1em;
+}

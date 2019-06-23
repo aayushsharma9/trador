@@ -1,15 +1,15 @@
 import React from 'react';
 import { logo, googleLogo, facebookLogo } from '../drawables';
-import { Button } from './common';
+import { AuthButton } from './common';
 import './Authentication.css';
 import { onbackgroundColor, backgroundColor } from '../values/colors';
 
 const Landing = () => {
     return (
-        <span className='root-container'>
-            <img className='logo-image' src={logo} alt='Logo' />        
-            <p className='tagline-text'>Unlimited Classfieds. For Free.</p>
-            <Button
+        <span className='auth-root-container'>
+            <img className='auth-logo-image' src={logo} alt='Logo' />        
+            <p className='auth-tagline-text'>Unlimited Classfieds. For Free.</p>
+            <AuthButton
                 text='LOGIN WITH GOOGLE'
                 href='/auth/google'
                 image={googleLogo}
@@ -20,7 +20,7 @@ const Landing = () => {
                 highlightColor='#efefef'
                 textColor={onbackgroundColor}
             />
-            <Button
+            <AuthButton
                 text='LOGIN WITH FACEBOOK'
                 href='/auth/facebook'
                 image={facebookLogo}

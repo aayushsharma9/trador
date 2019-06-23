@@ -1,25 +1,35 @@
-.button-container {
-    padding: 0em;
-    margin: 0.8em;
+.button-root-container {
+    padding: 0;
+    margin: 1em;
     border-width: 0.1em;
-    border-radius: 0.3em;
-    border-color: var(--on-background-color-faded);
+    border-style: solid;
+    border-radius: 0.5em;
+    border-color: var(--accent-color);
+    background-color: var(--background-color);
+    outline: none;
 }
 
-.text {
-    display: inline;
+.button-root-container:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+}
+
+.button-text {
     font-family: TitleFont;
+    color: var(--on-background-color);
     font-weight: normal;
     font-style: normal;
     text-align: center;
     text-decoration: none;
-    letter-spacing: 1px;
-    font-size: 0.8em;
-    margin: 1em;
-    margin-left: 0;
-    margin-top: 1.4em;
+    letter-spacing: 0.1em;
+    font-size: 1em;
+    object-fit: cover; 
+    margin: 0;   
+    padding: 1em;
+    padding-bottom: 0.4em;
+    padding-top: 0.7em;
 }
 
-.image {
-    margin: 1em;
+.button-text:hover {
+    color: var(--background-color);
 }

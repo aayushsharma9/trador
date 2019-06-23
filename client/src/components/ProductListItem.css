@@ -1,0 +1,41 @@
+.product-list-item-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.35em;
+    background-color: white;
+    box-shadow: 0em 0em 0.4em #ddd;
+    width: 30em;
+    margin: 1em;
+    overflow: hidden;
+}
+
+.product-list-item-text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2em 0.5em;
+}
+
+.product-list-item-title-text, .sub, .faded {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: em;
+    color: var(--on-background-color);
+    margin: 0.45em;
+}
+
+.sub {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.faded {
+    font-size: 0.9em;
+    color: var(--on-background-color-faded);
+    margin-left: 0;
+}
+
+.product-list-item-image {
+    background-color: blue;
+    border-radius: 0.35em;    
+}

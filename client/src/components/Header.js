@@ -1,47 +1,67 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Payment from './Payment';
+import { connect } from 'react-redux';
+import './Header.css';
+import { logo } from '../drawables';
+import { Button } from './common/Button';
 
 class Header extends Component {
     renderContent() {
-        switch (this.props.auth) {
-            case null: return;
+        switch (this.props.user) {
+            case null:
+                return;
             case false:
-                return [
-                    <li><a href='/auth/google'> Sign in with Google </a></li>,
-                    <li><a href='/auth/facebook'> Sign in with Facebook </a></li>
-                ];
+                return <li>
+                    <Button
+                        text='LOGIN'
+                        onClick={() => {
+                            window.location.href = '/auth';
+                        }}
+                    />
+                </li>;
             default:
                 return [
-                    <li key='1'><Payment /></li>,
-                    <li key='2'><span style={{ margin: '0 0px' }}>Credits: {this.props.auth.credits}</span></li>,
-                    <li key='3'><a href='/api/logout'> Logout </a></li>
+                    <li key="1" style={{ margin: '0 10px' }}>
+                        {/* Credits: {this.props.user.credits} */}
+                    </li>,
+                    <li key="2">
+                        <Button
+                            text='CREATE AN AD'
+                            onClick={() => {
+                                window.location.href = '/';
+                            }}
+                        />
+                    </li>,
+                    <li key="3">
+                        <Button
+                            text='LOGOUT'
+                            onClick={() => {
+                                window.location.href = '/api/logout';
+                            }}
+                        />
+                    </li>
                 ];
         }
     }
 
     render() {
         return (
-            <nav>
-                <div className='nav-wrapper'>
-                    <Link
-                        to={this.props.auth ? '/surveys' : '/'}
-                        className='left brand-logo'
-                    >
-                        Trador
-                    </Link>
-                    <ul className='right'>
-                        {this.renderContent()}
-                    </ul>
-                </div>
-            </nav>
+            <div className='header-root-container'>
+                <Link
+                    to='/home'
+                >
+                    <img className='header-logo-image' src={logo} alt='logo' />
+                </Link>
+                <ul className='header-content-list'>
+                    {this.renderContent()}
+                </ul>
+            </div>
         );
     }
 }
 
-function mapStateToProps({ auth }) {
-    return { auth };
+const mapStateToProps = ({ user }) => {
+    return { user };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, null)(Header);
