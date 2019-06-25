@@ -6,6 +6,7 @@
     border-radius: 0.5em;
     border-color: var(--accent-color);
     background-color: var(--background-color);
+    background: none;
     outline: none;
 }
 

@@ -1,9 +1,10 @@
 .product-form-root-container {
     display: flex;
     flex-direction: column;
-    background-color: var(--background-color);
+    background-image: linear-gradient(to left bottom, #00ffc1, #00ebdd, #00d5ed, #00bdf0, #00a3e3);
     align-items: center;
     justify-content: center;
+    height: 100vh
 }
 
 .product-form {
@@ -11,6 +12,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0em 0em 0.4em #bbb;
+    background-color: var(--background-color);
+    opacity: 0.95;
+    border-radius: 1em;
+    padding: 1.3em;
+    margin: 1em;
 }
 
 .product-form-header-container {
@@ -22,7 +29,7 @@
 
 .product-form-logo {
     height: 1.7em;
-    margin: 0.8em;
+    margin-right: 0.8em;
 }
 
 .product-form-header-text {
@@ -30,6 +37,8 @@
     color: var(--on-background-color);
     font-size: 2em;
     padding-top: 0.3em;
+    margin: 0.2em;
+    margin-left: 0;
 }
 
 .product-form-field-container {
@@ -41,57 +50,9 @@
     border-style: solid;
     border-radius: 0.3em;
     margin: 1em;
-    border-color: var(--on-background-color);
+    border-color: var(--on-background-color-faded);
     background-color: var(--background-color);
     outline: none;
-}
-
-.product-form-textarea {
-    resize: none;
-}
-
-.product-form-input, 
-.product-form-textarea {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 500;
-    color: var(--on-background-color);
-    background: none;
-    border: none;
-    outline: none;
-    padding: 0.8em;
-    width: 30em;   
-}
-
-.product-form-label {
-    display: flex;
-    position: absolute;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 600;
-    color: var(--on-background-color-faded);
-    background: none;
-    pointer-events: none;
-    top: 0.5em;  
-    margin: 0 0.25em;
-    padding: 0 0.25em;
-    transition: 300ms ease all;
-}
-
-.product-form-input:focus + .product-form-label,
-.product-form-input:valid + .product-form-label {
-    top: -0.75em;
-    font-size: 0.8em;
-    border-radius: 100px;
-    color: var(--on-background-color);
-    background-color: var(--background-color);
-}
-
-.product-form-textarea:focus + .product-form-label,
-.product-form-textarea:valid + .product-form-label {
-    top: -0.75em;
-    font-size: 0.8em;
-    border-radius: 100px;
-    color: var(--on-background-color);
-    background-color: var(--background-color);
 }
 
 .product-form-label-focused {
@@ -105,7 +66,7 @@
     top: -0.75em;
     font-size: 0.8em;
     border-radius: 100px;
-    color: var(--on-background-color);
+    color: var(--on-background-color-faded);
     background-color: var(--background-color);
 }
 

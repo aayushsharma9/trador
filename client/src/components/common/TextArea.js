@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './Input.css';
 
-class Input extends Component {
+class TextArea extends Component {
     render() {
-        const { value, onChange, label, type } = this.props;
+        const { value, onChange, label, type, rows } = this.props;
 
         return (
             <div className='input-field-container'>
-                <input
-                    className='input-field'
+                <textarea
+                    className='textarea-field'
                     required
+                    rows={rows}
                     type={type}
                     value={value}
                     onChange={onChange}
@@ -20,4 +21,4 @@ class Input extends Component {
     }
 }
 
-export { Input };
+export { TextArea };

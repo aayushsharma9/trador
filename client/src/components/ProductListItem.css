@@ -5,7 +5,7 @@
     background-color: white;
     box-shadow: 0em 0em 0.4em #ddd;
     width: 30em;
-    margin: 1em;
+    margin: 0.5em;
     overflow: hidden;
 }
 
@@ -22,6 +22,7 @@
     font-size: em;
     color: var(--on-background-color);
     margin: 0.45em;
+    pointer-events: none;
 }
 
 .sub {
