@@ -1,0 +1,127 @@
+.product-form-root-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    align-items: center;
+    justify-content: center;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-form-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-form-logo {
+    height: 1.7em;
+    margin: 0.8em;
+}
+
+.product-form-header-text {
+    font-family: TitleFont;
+    color: var(--on-background-color);
+    font-size: 2em;
+    padding-top: 0.3em;
+}
+
+.product-form-field-container {
+    display: flex;
+    position: relative;
+    border-width: 0.5em;
+    border-radius: 0.3em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-radius: 0.3em;
+    margin: 1em;
+    border-color: var(--on-background-color);
+    background-color: var(--background-color);
+    outline: none;
+}
+
+.product-form-textarea {
+    resize: none;
+}
+
+.product-form-input, 
+.product-form-textarea {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 500;
+    color: var(--on-background-color);
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0.8em;
+    width: 30em;   
+}
+
+.product-form-label {
+    display: flex;
+    position: absolute;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    color: var(--on-background-color-faded);
+    background: none;
+    pointer-events: none;
+    top: 0.5em;  
+    margin: 0 0.25em;
+    padding: 0 0.25em;
+    transition: 300ms ease all;
+}
+
+.product-form-input:focus + .product-form-label,
+.product-form-input:valid + .product-form-label {
+    top: -0.75em;
+    font-size: 0.8em;
+    border-radius: 100px;
+    color: var(--on-background-color);
+    background-color: var(--background-color);
+}
+
+.product-form-textarea:focus + .product-form-label,
+.product-form-textarea:valid + .product-form-label {
+    top: -0.75em;
+    font-size: 0.8em;
+    border-radius: 100px;
+    color: var(--on-background-color);
+    background-color: var(--background-color);
+}
+
+.product-form-label-focused {
+    display: flex;
+    position: absolute;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    pointer-events: none;
+    margin: 0 0.25em;
+    padding: 0 0.25em;
+    top: -0.75em;
+    font-size: 0.8em;
+    border-radius: 100px;
+    color: var(--on-background-color);
+    background-color: var(--background-color);
+}
+
+.product-form-select {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 500;
+    outline: none;
+    background: none;
+    width: 31.5em;   
+    padding: 0.8em;
+    border: none;
+}
+
+.product-form-option {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    border: none;
+    padding: 0.5em;
+}

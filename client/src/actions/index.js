@@ -12,7 +12,9 @@ export const handleToken = (token) => async dispatch => {
 }
 
 export const createProduct = (product) => async dispatch => {
+    console.log('createProduct getting Called! Pogchamp');
     const res = await axios.post('/api/products/new', product);
+    console.log(res.data);
     dispatch({ type: CREATE_PRODUCT, payload: res.data });
 }
 

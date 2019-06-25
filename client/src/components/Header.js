@@ -28,7 +28,7 @@ class Header extends Component {
                         <Button
                             text='CREATE AN AD'
                             onClick={() => {
-                                window.location.href = '/';
+                                window.location.href = '/products/new';
                             }}
                         />
                     </li>,
