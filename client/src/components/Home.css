@@ -1,6 +1,53 @@
 .home-root-container {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
     background-color: var(--background-color);
+    height: 100vh;
+}
+
+.home-product-list {
+    /* position: relative; */
+    margin-top: 1em;
+    height: 70vh;
+    width: 35em;
+    overflow-y: scroll;
+    padding: 1em 0;
+}
+
+.home-product-list::-webkit-scrollbar {
+    width: 0em;
+    height: 10em;
+}
+
+.home-product-list::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: #ddd;
+}
+
+.home-product-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--accent-color);
+}
+
+.home-product-list-top {
+    top: 5em;
+}
+
+.home-product-list-bottom {
+    top: 42em;
+}
+
+.home-product-list-top,
+.home-product-list-bottom {
+    position: absolute;
+    width: 32em;
+    height: 3em;
+    background-color: var(--background-color);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
 }

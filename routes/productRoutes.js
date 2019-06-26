@@ -15,6 +15,7 @@ module.exports = app => {
             category,
             subCategory,
             _user: req.user.id,
+            postedBy: req.user.name,
             datePosted: Date.now()
         });
 

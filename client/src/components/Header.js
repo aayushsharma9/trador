@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './Header.css';
 import { logo } from '../drawables';
 import { Button } from './common/Button';
+import Search from './Search';
 
 class Header extends Component {
     renderContent() {
@@ -52,6 +53,7 @@ class Header extends Component {
                 >
                     <img className='header-logo-image' src={logo} alt='logo' />
                 </Link>
+                <Search />
                 <ul className='header-content-list'>
                     {this.renderContent()}
                 </ul>

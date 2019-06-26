@@ -15,8 +15,11 @@ class ProductForm extends Component {
         description: '',
     }
 
-    submit() {
-        this.props.createProduct(this.state);
+    submit(event) {
+        this.props.createProduct(this.state).then((res) => {
+            alert(this.props.createSuccess ? 'Ad posted successfully!' : 'Error posting ad');
+        });
+        event.preventDefault();
         // console.log(this.state);
     }
 
@@ -70,7 +73,7 @@ class ProductForm extends Component {
                         value={this.state.description}
                     onChange={(event) => { this.setState({ description: event.target.value }) }}
                     />
-                    <Button text='SUBMIT' onClick={this.submit.bind(this)} />
+                    <Button type='submit' text='SUBMIT' onClick={this.submit.bind(this)} />
                 </form>
             </div >
         );

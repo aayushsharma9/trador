@@ -20,9 +20,13 @@ class Home extends Component {
         return (
             <div className='home-root-container'>
                 <Header />
-                {this.state.allProducts.map((item, index) => (
-                    <ProductListItem key={item._id} item={item} />
-                ))}
+                <div className='home-product-list'>
+                <div className='home-product-list-top'/>
+                <div className='home-product-list-bottom'/>
+                    {this.state.allProducts.map((item, index) => (
+                        <ProductListItem key={item._id} item={item} />
+                    ))}
+                </div>
             </div>
         );
     }

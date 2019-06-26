@@ -3,7 +3,7 @@ import './ProductListItem.css';
 
 class ProductListItem extends Component {
     render() {
-        const { name, category, subCategory, price, condition } = this.props.item;
+        const { name, category, subCategory, price, condition, postedBy } = this.props.item;
         return (
             <div className='product-list-item-container'>
                 {/* <img className='product-list-item-image' src={facebookLogo} alt='product'/> */}
@@ -14,7 +14,10 @@ class ProductListItem extends Component {
                         <p className='product-list-item-text sub faded'>{subCategory}</p>
                     </span>
                     <p className='product-list-item-text sub'>{condition}</p>
-                    <p className='product-list-item-text sub'>₹ {price}</p>
+                    <span style={{ display: 'flex', flex: 1,  flexDirection: 'row', justifyContent: 'space-between', width: '29em' }}>
+                        <p className='product-list-item-text sub'>₹ {price}</p>
+                        <p className='product-list-item-text sub faded'>Posted by {postedBy}</p>
+                    </span>
                 </span>
             </div>
         );
