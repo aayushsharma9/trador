@@ -38,6 +38,20 @@ module.exports = app => {
         });
     });
 
+    // app.get('/api/products/search', (req, res) => {
+    //     const { searchString } = req.body;
+    //     var re = new RegExp("^" + `/$searchString/`);
+    //     Product.find({
+    //         name: re
+    //     }, (err, products) => {
+    //             if (err) {
+    //                 console.log(err);
+    //             } else {
+    //                 console.log(products);
+    //             }
+    //     })
+    // });
+
     app.delete('/api/products/delete', requireLogin, (req, res) => {
         const { id } = req.body;
         Product.findOneAndDelete({ _id: id }, (err, doc) => {

@@ -80,8 +80,8 @@ class ProductForm extends Component {
     }
 }
 
-const mapStateToProps = ({ createSuccess }) => {
-    return { createSuccess };
+const mapStateToProps = ({ products }) => {
+    return { createSuccess: products.createSuccess };
 }
 
 export default connect(mapStateToProps, { createProduct })(ProductForm);
