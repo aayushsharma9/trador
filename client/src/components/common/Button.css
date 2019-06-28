@@ -8,6 +8,7 @@
     background-color: var(--background-color);
     background: none;
     outline: none;
+    transition: 300ms ease all;
 }
 
 .button-root-container:hover {
@@ -29,6 +30,7 @@
     padding: 1em;
     padding-bottom: 0.4em;
     padding-top: 0.7em;
+    transition: 300ms ease all;
 }
 
 .button-text:hover {

@@ -3,9 +3,16 @@
     flex-direction: row;
     border-radius: 0.35em;
     background-color: white;
-    box-shadow: 0em 0em 0.4em #ddd;
+    box-shadow: 0em 0em 0.2em #ddd;
     width: 30em;
     margin: 0.5em;
+    transition: 200ms ease all;
+}
+
+.product-list-item-container:hover {
+    width: 32em;
+    margin: 0.75em;
+    box-shadow: 0em 0em 1em #ddd;
 }
 
 .product-list-item-text-container {

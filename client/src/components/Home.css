@@ -8,7 +8,9 @@
 }
 
 .home-product-list {
-    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 1em;
     height: 70vh;
     width: 35em;

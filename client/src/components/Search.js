@@ -6,8 +6,8 @@ class Search extends Component {
     render() {
         return (
             <div className='search-bar-root-container'>
-                <img src={searchIcon} className='search-bar-icon' alt='search'/>
                 <input type='text' placeholder='Search' className='search-bar-field'/>
+                <img src={searchIcon} className='search-bar-icon' alt='search'/>
             </div>
         );
     }
