@@ -1,11 +1,37 @@
 const requireLogin = require('../middlewares/requireLogin');
 const mongoose = require('mongoose');
-
+const cloudinary = require('cloudinary').v2;
 const Product = mongoose.model('products');
+const keys = require('../config/keys');
+
+cloudinary.config({
+    cloud_name: keys.cloudinaryCloudName,
+    api_key: keys.cloudinaryKey,
+    api_secret: keys.cloudinarySecret
+});
+
+async function uploadFiles(files) {
+    var urlArray = [];
+    
+    for (var i = 0; i < files.length; i++) {
+        await cloudinary.uploader.upload(files[i], (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                urlArray.push(result.url);
+            }
+        });
+    }
+
+    return urlArray;
+}
 
 module.exports = app => {
-    app.post('/api/products/new', requireLogin, (req, res) => {
-        const { name, price, condition, description, category, subCategory } = req.body;
+    app.post('/api/products/new', requireLogin, async (req, res) => {
+        const { name, price, condition, description, category, subCategory, files } = req.body;
+        var images = [];
+
+        images = await uploadFiles(files);
 
         const product = new Product({
             name,
@@ -14,6 +40,7 @@ module.exports = app => {
             description,
             category,
             subCategory,
+            images,
             _user: req.user.id,
             postedBy: req.user.name,
             datePosted: Date.now()

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ProductForm.css';
-import { createProduct } from '../actions';
+import { createProduct, fetchProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
+import axios from 'axios';
 
 class ProductForm extends Component {
     state = {
@@ -13,14 +14,15 @@ class ProductForm extends Component {
         subCategory: '',
         condition: 'Brand New',
         description: '',
+        files: []
     }
 
     submit(event) {
         this.props.createProduct(this.state).then((res) => {
             alert(this.props.createSuccess ? 'Ad posted successfully!' : 'Error posting ad');
+            this.props.fetchProducts();
         });
         event.preventDefault();
-        // console.log(this.state);
     }
 
     render() {
@@ -71,7 +73,28 @@ class ProductForm extends Component {
                         type='text'
                         rows={5}
                         value={this.state.description}
-                    onChange={(event) => { this.setState({ description: event.target.value }) }}
+                        onChange={(event) => { this.setState({ description: event.target.value }) }}
+                    />
+                    <input
+                        type='file'
+                        accept='image/*'
+                        multiple
+                        onChange={(event) => {
+                            var fileList = event.target.files;
+                            var files = [...fileList]
+                            var contentArray = [];
+
+                            files.forEach(file => {
+                                var reader = new FileReader();
+                                reader.readAsDataURL(file);
+                                reader.onload = readerEvent => {
+                                    var content = readerEvent.target.result;
+                                    contentArray.push(content);
+                                }
+                            });
+
+                            this.setState({ files: contentArray });
+                        }}
                     />
                     <Button type='submit' text='SUBMIT' onClick={this.submit.bind(this)} />
                 </form>
@@ -84,4 +107,4 @@ const mapStateToProps = ({ products }) => {
     return { createSuccess: products.createSuccess };
 }
 
-export default connect(mapStateToProps, { createProduct })(ProductForm);
+export default connect(mapStateToProps, { createProduct, fetchProducts })(ProductForm);

@@ -3,10 +3,10 @@ import './ProductListItem.css';
 
 class ProductListItem extends Component {
     render() {
-        const { name, category, subCategory, price, condition, postedBy } = this.props.item;
+        const { name, category, subCategory, price, condition, postedBy, images } = this.props.item;
         return (
             <div className='product-list-item-container'>
-                {/* <img className='product-list-item-image' src={facebookLogo} alt='product'/> */}
+                <img className='product-list-item-image' src={images[0]} alt='product'/>
                 <span className='product-list-item-text-container'>
                     <p className='product-list-item-title-text'>{name}</p>
                     <span style={{ display: 'flex', flexDirection: 'row' }}>

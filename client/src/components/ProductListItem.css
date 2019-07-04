@@ -10,7 +10,7 @@
 }
 
 .product-list-item-container:hover {
-    width: 32em;
+    width: 31em;
     margin: 0.75em;
     box-shadow: 0em 0em 1em #ddd;
 }
@@ -18,6 +18,7 @@
 .product-list-item-text-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 0.2em 0.5em;
 }
 
@@ -43,6 +44,13 @@
 }
 
 .product-list-item-image {
-    background-color: blue;
     border-radius: 0.35em;    
+    height: 8.4em;
+    width: 8.4em;
+    object-fit: cover;
+}
+
+.product-list-item-container:hover + .product-list-item-image {
+    height: 100em;
+    width: 100em;
 }
