@@ -9,5 +9,5 @@ module.exports = {
     stripeSecretKey: process.env.STRIPE_SECRET_KEY,
     cloudinaryKey: CLOUDINARY_KEY,
     cloudinarySecret: CLOUDINARY_SECRET,
-    cloudinaryCloudName: CLOUDINARY_CLOUD_NAME
+    cloudinaryCloudName: CLOUDINARY_CLOUD_NAME,
 }
