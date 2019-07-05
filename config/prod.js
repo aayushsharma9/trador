@@ -7,7 +7,7 @@ module.exports = {
     cookieKey: process.env.COOKIE_KEY,
     stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     stripeSecretKey: process.env.STRIPE_SECRET_KEY,
-    cloudinaryKey: CLOUDINARY_KEY,
-    cloudinarySecret: CLOUDINARY_SECRET,
-    cloudinaryCloudName: CLOUDINARY_CLOUD_NAME,
+    cloudinaryKey: process.env.CLOUDINARY_KEY,
+    cloudinarySecret: process.env.CLOUDINARY_SECRET,
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME
 }
