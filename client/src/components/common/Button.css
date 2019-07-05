@@ -8,7 +8,7 @@
     background-color: var(--background-color);
     background: none;
     outline: none;
-    transition: 300ms ease all;
+    transition: 150ms ease all;
 }
 
 .button-root-container:hover {

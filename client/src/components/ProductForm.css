@@ -20,6 +20,20 @@
     margin: 1em;
 }
 
+.product-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.product-form-horizontal-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .product-form-header-container {
     display: flex;
     flex-direction: row;
@@ -85,4 +99,119 @@
     font-weight: 600;
     border: none;
     padding: 0.5em;
+}
+
+.product-form-image-input-field {
+    display: none;
+}
+
+.product-form-image-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em;
+    margin: 0 1em;
+    background-color: var(--accent-color);
+    border-width: 0;
+    border-style: solid;
+    border-radius: 0.3em;
+    transition: 150ms ease all;
+    pointer-events: all;
+}
+
+.product-form-image-input-label {
+    color: var(--background-color);
+    font-family: TitleFont;
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin: 0;   
+    padding-top: 0.4em;
+}
+
+.product-form-image-input-icon {
+    height: 1.5em;
+    width: 1.5em;
+    margin-right: 0.4em;
+}
+
+.product-form-image-input-container:hover {
+    opacity: 0.8;
+}
+.product-form-image-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.product-form-image-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(218, 222, 228);
+    margin: 1em;
+    width: 26.5em;
+    height: 7em;
+    overflow-x: scroll;
+    border-radius: 0.3em;
+}
+
+.product-form-image-list::-webkit-scrollbar {
+    width: 0em;
+    height: 0.5em;
+}
+
+.product-form-image-list::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgb(218, 222, 228);
+}
+
+.product-form-image-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--accent-color);
+}
+
+.image-thumbnail-container {
+    position: relative;
+}
+
+.image-thumbnail {
+    height: 5.5em;
+    width: 5.5em;
+    object-fit: cover;
+    margin: 0.3em;
+    border-radius: 0.2em;
+}
+
+.image-thumbnail-remove-button {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    height: 0em;
+    width: 0em;
+    padding: 0.1em;
+    background-color: none;
+    box-shadow: none;
+    border-radius: 0.1em;
+    transition: 150ms ease all;    
+}
+
+.image-thumbnail:hover + .image-thumbnail-remove-button {
+    background-color: #F44336;
+    height: 1em;
+    width: 1em;
+    box-shadow: 0em 0em 0.2em #585858;
+}
+
+.image-thumbnail-remove-button:hover {
+    background-color: #F44336;
+    opacity: 0.8;
+    height: 1em;
+    width: 1em;
+    box-shadow: 0em 0em 0.2em #585858;
 }

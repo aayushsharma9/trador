@@ -49,7 +49,7 @@ class Header extends Component {
         return (
             <div className='header-root-container'>
                 <Link
-                    to='/home'
+                    to='/'
                 >
                     <img className='header-logo-image' src={logo} alt='logo' />
                 </Link>

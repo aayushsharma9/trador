@@ -4,7 +4,7 @@ import './ProductForm.css';
 import { createProduct, fetchProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
-import axios from 'axios';
+import { imageIconLight, closeIconLight } from '../drawables/icons';
 
 class ProductForm extends Component {
     state = {
@@ -25,6 +25,60 @@ class ProductForm extends Component {
         event.preventDefault();
     }
 
+    async readImages(event) {
+        var fileList = event.target.files;
+        var files = [...fileList]
+
+        for (var i = 0; i < files.length; i++) {
+            var reader = new FileReader();
+            reader.readAsDataURL(files[i]);
+            reader.onload = readerEvent => {
+                var content = readerEvent.target.result;
+                this.setState(({ files }) => ({ files: [...files, content] }));
+            }
+        }
+    }
+
+    removeImage(item) {
+        const fileArray = this.state.files;
+        console.log("Remove image called");
+        for (var i = 0; i < fileArray.length; i++) {
+            if (fileArray[i] === item) {
+                fileArray.splice(i, 1);
+                this.setState({ files: fileArray });
+            }
+        }
+    }
+
+    renderImageSelector() {
+        return (
+            <div className='product-form-image-list-container'>
+                <div className='product-form-image-list'>
+                    {this.state.files.map((item, index) => (
+                        <div className='image-thumbnail-container' key={item}>
+                            <img src={item} alt='' className='image-thumbnail' />
+                            <img src={closeIconLight} className='image-thumbnail-remove-button' alt='' onClick={() => this.removeImage(item)}/>
+                        </div>
+                    ))}
+                </div>
+                <div className='product-form-image-input-container'>
+                    <img src={imageIconLight} alt='' className='product-form-image-input-icon' />
+                    <label className='product-form-image-input-label'>
+                        ADD IMAGES
+                        <input
+                            className='product-form-image-input-field'
+                            id='file'
+                            type='file'
+                            accept='image/*'
+                            multiple
+                            onChange={(event) => this.readImages(event)}
+                        />
+                    </label>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className='product-form-root-container'>
@@ -33,69 +87,55 @@ class ProductForm extends Component {
                         <img src={logo} className='product-form-logo' alt='logo' />
                         <p className='product-form-header-text'>Create an ad.</p>
                     </span>
-                    <Input
-                        label='Name'
-                        type='text'
-                        value={this.state.name}
-                        onChange={(event) => { this.setState({ name: event.target.value }) }}
-                    />
-                    <Input
-                        label='Price'
-                        type='number'
-                        value={this.state.price}
-                        onChange={(event) => { this.setState({ price: event.target.value }) }}
-                    />
-                    <Input
-                        label='Category'
-                        type='text'
-                        value={this.state.category}
-                        onChange={(event) => { this.setState({ category: event.target.value }) }}
-                    />
-                    <Input
-                        label='Subcategory'
-                        type='text'
-                        value={this.state.subCategory}
-                        onChange={(event) => { this.setState({ subCategory: event.target.value }) }}
-                    />
-                    <div className='product-form-field-container'>
-                        <label className='product-form-label-focused'>Condition</label>
-                        <select className='product-form-select'
-                            value={this.state.condition}
-                            onChange={(event) => { this.setState({ condition: event.target.value }) }}
-                        >
-                            <option className='product-form-option' value='Brand New'>Brand New</option>
-                            <option className='product-form-option' value='Light Wear and Tear'>Light Wear and Tear</option>
-                            <option className='product-form-option' value='Heavy Wear and Tear'>Heavy Wear and Tear</option>
-                        </select>
+                    <div className='product-form-horizontal-section'>
+                        <div className='product-form-section'>
+                            <Input
+                                label='Name'
+                                type='text'
+                                value={this.state.name}
+                                onChange={(event) => { this.setState({ name: event.target.value }) }}
+                            />
+                            <Input
+                                label='Price'
+                                type='number'
+                                value={this.state.price}
+                                onChange={(event) => { this.setState({ price: event.target.value }) }}
+                            />
+                            <Input
+                                label='Category'
+                                type='text'
+                                value={this.state.category}
+                                onChange={(event) => { this.setState({ category: event.target.value }) }}
+                            />
+                            <Input
+                                label='Subcategory'
+                                type='text'
+                                value={this.state.subCategory}
+                                onChange={(event) => { this.setState({ subCategory: event.target.value }) }}
+                            />
+                            <div className='product-form-field-container'>
+                                <label className='product-form-label-focused'>Condition</label>
+                                <select className='product-form-select'
+                                    value={this.state.condition}
+                                    onChange={(event) => { this.setState({ condition: event.target.value }) }}
+                                >
+                                    <option className='product-form-option' value='Brand New'>Brand New</option>
+                                    <option className='product-form-option' value='Light Wear and Tear'>Light Wear and Tear</option>
+                                    <option className='product-form-option' value='Heavy Wear and Tear'>Heavy Wear and Tear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className='product-form-section'>
+                            {this.renderImageSelector()}
+                            <TextArea
+                                label='Description'
+                                type='text'
+                                rows={8}
+                                value={this.state.description}
+                                onChange={(event) => { this.setState({ description: event.target.value }) }}
+                            />
+                        </div>
                     </div>
-                    <TextArea
-                        label='Description'
-                        type='text'
-                        rows={5}
-                        value={this.state.description}
-                        onChange={(event) => { this.setState({ description: event.target.value }) }}
-                    />
-                    <input
-                        type='file'
-                        accept='image/*'
-                        multiple
-                        onChange={(event) => {
-                            var fileList = event.target.files;
-                            var files = [...fileList]
-                            var contentArray = [];
-
-                            files.forEach(file => {
-                                var reader = new FileReader();
-                                reader.readAsDataURL(file);
-                                reader.onload = readerEvent => {
-                                    var content = readerEvent.target.result;
-                                    contentArray.push(content);
-                                }
-                            });
-
-                            this.setState({ files: contentArray });
-                        }}
-                    />
                     <Button type='submit' text='SUBMIT' onClick={this.submit.bind(this)} />
                 </form>
             </div >
