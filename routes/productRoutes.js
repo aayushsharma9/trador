@@ -98,4 +98,11 @@ module.exports = app => {
             else res.send({ success: true });
         });
     });
+
+    app.get('/api/products/user_products', requireLogin, (req, res) => {
+        Product.find({ _user: req.user }, (err, products) => {
+            if (err) res.send({ success: false });
+            else res.send(products);
+        })
+    });
 };
