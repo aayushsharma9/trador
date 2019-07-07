@@ -11,7 +11,7 @@ const productSchema = new Schema({
     subCategory: String,
     _user: { type: Schema.Types.ObjectId, ref: 'User' },
     postedBy: { type: Schema.Types.String, ref: 'User' },
-    datePosted: Date
+    datePosted: String
 });
 
 mongoose.model('products', productSchema);

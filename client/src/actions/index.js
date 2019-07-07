@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT } from './types';
+import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT, FETCH_PRODUCT_BY_ID } from './types';
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get('/api/current_user');
@@ -30,3 +30,8 @@ export const updateProduct = (product) => async dispatch => {
     const res = await axios.put('/api/products/update', product);
     dispatch({ type: UPDATE_PRODUCT }, res.data);
 }
+
+// export const getProductById = (productId) => async dispatch => {
+//     const res = await axios.get(`/api/products/${productId}`);
+//     dispatch({ type: FETCH_PRODUCT_BY_ID }, res.data)
+// }

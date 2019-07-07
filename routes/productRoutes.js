@@ -32,6 +32,8 @@ module.exports = app => {
         var images = [];
 
         images = await uploadFiles(files);
+        const dateOptions = { timeZone: 'Asia/Kolkata', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var currentDate = new Date().toLocaleDateString('en-US', dateOptions);
 
         const product = new Product({
             name,
@@ -43,7 +45,7 @@ module.exports = app => {
             images,
             _user: req.user.id,
             postedBy: req.user.name,
-            datePosted: Date.now()
+            datePosted: currentDate
         });
 
         try {
@@ -104,5 +106,12 @@ module.exports = app => {
             if (err) res.send({ success: false });
             else res.send(products);
         })
+    });
+
+    app.get('/api/products/:productId', (req, res) => {
+        Product.findOne({ _id: req.params.productId }, (err, product) => {
+            if (err) res.send({ success: false });
+            else res.send(product);
+        });
     });
 };

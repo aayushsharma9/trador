@@ -6,6 +6,7 @@ import '../values/variables.css';
 import Authentication from './Authentication';
 import Home from './Home';
 import ProductForm from './ProductForm';
+import ProductPage from './ProductPage';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route exact path='/' component={Home} />
                         <Route exact path='/auth' component={Authentication} />
                         <Route path='/products/new' component={ProductForm} />
+                        <Route path='/products/view/:productId' component={ProductPage} />
                     </div>
                 </BrowserRouter>
             </div>

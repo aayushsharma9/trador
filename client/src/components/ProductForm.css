@@ -136,6 +136,7 @@
     height: 1.5em;
     width: 1.5em;
     margin-right: 0.4em;
+    pointer-events: none;
 }
 
 .product-form-image-input-container:hover {
