@@ -5,7 +5,7 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-re
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './ProductPage.css';
 import { Button } from './common/Button';
-import { chevronLeft, chevronRight } from '../drawables/icons';
+import { chevronLeft, chevronRight, messageIconLight } from '../drawables/icons';
 
 class ProductPage extends Component {
     state = {
@@ -33,9 +33,9 @@ class ProductPage extends Component {
     render() {
         const { name, price, category, subCategory, description, postedBy, condition, datePosted, images } = this.state;
         return (
-            <div>
+            <div className='product-page-root-container'>
                 <Header />
-                <div className='product-page-root-container'>
+                <div className='product-page-container'>
                     <CarouselProvider
                         naturalSlideWidth={1}
                         naturalSlideHeight={1}
@@ -58,13 +58,13 @@ class ProductPage extends Component {
                     </CarouselProvider>
                     <div className='product-page-text-container'>
                         <p className='product-page-text product-page-title'>{name}</p>
-                        <span style={{ display: 'flex', flexDirection: 'row', marginTop: '0.5%', marginBottom: '0.5%' }}>
+                        <span style={{ display: 'flex', flexDirection: 'row', marginTop: '0.5%', marginBottom: '0.5%', marginLeft: '2%' }}>
                             <p className='product-page-text product-page-subtitle'>{category}</p>
                             <p className='product-page-text product-page-subtitle faded'>{subCategory}</p>
                         </span>
                         <p className='product-page-text product-page-subtitle'>Sold by {postedBy}</p>
                         <p className='product-page-text product-page-title'>₹ {price}</p>
-                        <Button text='CONTACT SELLER' />
+                        <Button text='CONTACT SELLER' image={messageIconLight} filled />
                         <div style={{ display: 'flex', marginTop: '0.5%', flexDirection: 'column' }}>
                             <p className='product-page-text-nomargin product-page-subtitle'>About this product</p>
                             <p className='product-page-text-nomargin product-page-subtitle faded'>{condition}</p>

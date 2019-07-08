@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT, FETCH_PRODUCT_BY_ID } from './types';
+import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT, FETCH_USER_PRODUCTS } from './types';
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get('/api/current_user');
@@ -19,6 +19,12 @@ export const createProduct = (product) => async dispatch => {
 export const fetchProducts = () => async dispatch => {
     const res = await axios.get('/api/products/all');
     dispatch({ type: FETCH_ALL_PRODUCTS, payload: res.data });
+}
+
+export const fetchUserProducts = () => async dispatch => {
+    const res = await axios.get('/api/products/current_user_products');
+    console.log("Action creator says: ", res.data);
+    dispatch({ type: FETCH_USER_PRODUCTS, payload: res.data });
 }
 
 export const deleteProducts = (id) => async dispatch => {

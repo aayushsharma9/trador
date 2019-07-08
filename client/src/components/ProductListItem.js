@@ -9,18 +9,18 @@ class ProductListItem extends Component {
             <Link to={`/products/view/${_id}`} style={{ textDecoration: 'none' }}>
                 <div className='product-list-item-container'>
                     <img className='product-list-item-image' src={images[0]} alt='product' />
-                    <span className='product-list-item-text-container'>
+                    <div className='product-list-item-text-container'>
                         <p className='product-list-item-title-text'>{name}</p>
-                        <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
                             <p className='product-list-item-text sub'>{category}</p>
                             <p className='product-list-item-text sub faded'>{subCategory}</p>
-                        </span>
+                        </div>
                         <p className='product-list-item-text sub'>{condition}</p>
-                        <span style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <div style={{ display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'space-between' }}>
                             <p className='product-list-item-text sub'>₹ {price}</p>
                             <p className='product-list-item-text sub faded'>Posted by {postedBy}</p>
-                        </span>
-                    </span>
+                        </div>
+                    </div>
                 </div>
             </Link>
         );

@@ -1,14 +1,26 @@
 .button-root-container {
-    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2em 0.6em;
     margin: 1em;
     border-width: 0.1em;
     border-style: solid;
     border-radius: 0.5em;
     border-color: var(--accent-color);
-    background-color: var(--background-color);
+    background: none;
     background: none;
     outline: none;
     transition: 150ms ease all;
+}
+
+.filled {
+    background-color: var(--accent-color);    
+}
+
+.filled:hover {
+    opacity: 0.75;
 }
 
 .button-root-container:hover {
@@ -27,12 +39,22 @@
     font-size: 100%;
     object-fit: cover; 
     margin: 0;   
-    padding: 1em;
     padding-bottom: 0.4em;
     padding-top: 0.7em;
     transition: 300ms ease all;
 }
 
+.light {
+    color: var(--background-color);
+}
+
 .button-text:hover {
     color: var(--background-color);
+}
+
+.button-image {
+    height: 1.2em;
+    width: 1.2em;
+    object-fit: contain;
+    margin-right: 0.6em;
 }

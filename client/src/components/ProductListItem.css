@@ -13,16 +13,26 @@
     transition: 200ms ease all;
 }
 
+.short {
+    width: 20em;
+}
+
 .product-list-item-container:hover {
     width: 31em;
     margin: 0.75em;
     box-shadow: 0em 0em 1em #ddd;
 }
 
+.short:hover {
+    width: 21em;
+}
+
 .product-list-item-text-container {
     display: flex;
+    flex: 1;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: flex-start;
     padding: 0.2em 0.5em;
 }
 
@@ -32,7 +42,7 @@
     font-style: normal;
     font-size: em;
     color: var(--on-background-color);
-    margin: 0.45em;
+    margin: 0 0.45em;
     pointer-events: none;
 }
 
@@ -52,6 +62,11 @@
     height: 8.4em;
     width: 8.4em;
     object-fit: cover;
+}
+
+.small {
+    height: 4.2em;
+    width: 4.2em;
 }
 
 .product-list-item-container:hover + .product-list-item-image {

@@ -1,7 +1,8 @@
 .header-root-container {
     display: flex;
+    position: relative;
     width: 100%;
-    background-color: var(--background-color);
+    background: none;
     align-items: center;
     justify-content: space-between;
 }
