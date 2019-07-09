@@ -13,7 +13,7 @@ export const handleToken = (token) => async dispatch => {
 
 export const createProduct = (product) => async dispatch => {
     const res = await axios.post('/api/products/new', product);
-    dispatch({ type: CREATE_PRODUCT, payload: res.data });
+    dispatch({ type: CREATE_PRODUCT, payload: res.data.success });
 }
 
 export const fetchProducts = () => async dispatch => {
@@ -23,12 +23,11 @@ export const fetchProducts = () => async dispatch => {
 
 export const fetchUserProducts = () => async dispatch => {
     const res = await axios.get('/api/products/current_user_products');
-    console.log("Action creator says: ", res.data);
-    dispatch({ type: FETCH_USER_PRODUCTS, payload: res.data.success });
+    dispatch({ type: FETCH_USER_PRODUCTS, payload: res.data });
 }
 
-export const deleteProducts = (id) => async dispatch => {
-    const res = await axios.delete('/api/products/delete', { id });
+export const deleteProduct = (_id) => async dispatch => {
+    const res = await axios.delete(`/api/products/delete/${_id}`);
     dispatch({ type: DELETE_PRODUCT, payload: res.data.success });
 }
 

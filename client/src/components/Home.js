@@ -26,6 +26,18 @@ class Home extends Component {
         if (nextProps.userProducts) this.setState({ userProducts: nextProps.userProducts });
     }
 
+    renderSelfProductList() {
+        if (this.state.userProducts.length === 0) {
+            return <p className='home-text home-text-faded'>You have not uploaded anything yet!</p>;
+        } else {
+            return (
+                this.state.userProducts.map((item, index) => (
+                    <ProductListItemMin key={item._id} item={item} />
+                ))
+            )
+        }
+    }
+
     render() {
         return (
             <div className='home-root-container'>
@@ -42,14 +54,11 @@ class Home extends Component {
                             <p className='home-text'>Your listings</p>
                         </span>
                         <div className='home-product-list self'>
-                            {this.state.userProducts.map((item, index) => (
-                                <ProductListItemMin key={item._id} item={item} />
-                            ))}
+                            {this.renderSelfProductList()}
                         </div>
                     </div>
                 </div>
             </div>
-
         );
     }
 }

@@ -169,7 +169,7 @@ class ProductForm extends Component {
 const mapStateToProps = ({ products }) => {
     return {
         createSuccess: products.createSuccess,
-        updateSuccess: products.updateSuccess
+        updateSuccess: products.updateSuccess,
     };
 }
 

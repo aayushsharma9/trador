@@ -25,6 +25,11 @@
     margin-right: 0;
 }
 
+.home-text-faded {
+    color: var(--on-background-color-faded);
+    font-size: 0.8em;
+}
+
 .home-product-list {
     display: flex;
     flex-direction: column;

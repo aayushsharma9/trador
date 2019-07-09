@@ -81,9 +81,9 @@ module.exports = app => {
     //     })
     // });
 
-    app.delete('/api/products/delete', requireLogin, (req, res) => {
-        const { id } = req.body;
-        Product.findOneAndDelete({ _id: id }, (err, doc) => {
+    app.delete('/api/products/delete/:productId', requireLogin, (req, res) => {
+        console.log(req.params.productId);
+        Product.findOneAndDelete({ _id: req.params.productId }, (err, doc) => {
             if (err) {
                 res.send({ success: false });
             } else {
