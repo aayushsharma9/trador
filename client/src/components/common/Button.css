@@ -5,7 +5,7 @@
     justify-content: center;
     padding: 0em 0.8em;
     margin: 0.5em;
-    border-width: 0.09em;
+    border-width: 0.1em;
     border-style: solid;
     border-radius: 0.5em;
     border-color: var(--on-background-color-faded);
@@ -47,9 +47,41 @@
 .light {
     color: var(--background-color);
 }
+
 .button-image {
     height: 1.2em;
     width: 1.2em;
     object-fit: contain;
     margin-right: 0.6em;
+}
+
+.button-icon-style {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: none;
+    background: none;
+    outline: none;
+    transition: 150ms ease all;
+}
+
+.button-icon-style:hover {
+    background: white;
+    border-radius: 0.4em;
+    box-shadow: 0em 0em 0.5em #ddd;
+}
+
+.button-icon {
+    height: 1.5em;
+    width: 1.5em;
+    object-fit: contain;
+    transition: 150ms ease all;
+}
+
+.button-icon:hover {
+    /* height: 2em; */
+    /* width: 2em; */
 }

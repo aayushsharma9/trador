@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT, FETCH_USER_PRODUCTS } from './types';
+import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT, FETCH_USER_PRODUCTS, FETCH_SAVED_PRODUCTS } from './types';
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get('/api/current_user');
@@ -34,6 +34,21 @@ export const deleteProduct = (_id) => async dispatch => {
 export const updateProduct = (product) => async dispatch => {
     const res = await axios.put('/api/products/update', product);
     dispatch({ type: UPDATE_PRODUCT, payload: res.data.success });
+}
+
+export const saveProduct = (product) => async dispatch => {
+    const res = await axios.post('/api/products/save', product);
+    dispatch({ type: FETCH_USER, payload: res.data });    
+}
+
+export const unsaveProduct = (_id) => async dispatch => {
+    const res = await axios.post('/api/products/unsave', { _id });
+    dispatch({ type: FETCH_USER, payload: res.data });    
+}
+
+export const fetchSavedProducts = () => async dispatch => {
+    const res = await axios.get('/api/products/save');
+    dispatch({ type: FETCH_SAVED_PRODUCTS, payload: res.data });
 }
 
 // export const getProductById = (productId) => async dispatch => {

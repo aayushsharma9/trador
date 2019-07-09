@@ -2,6 +2,7 @@ const requireLogin = require('../middlewares/requireLogin');
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
 const Product = mongoose.model('products');
+const User = mongoose.model('users');
 const keys = require('../config/keys');
 
 cloudinary.config({
@@ -111,10 +112,50 @@ module.exports = app => {
         })
     });
 
-    app.get('/api/products/:productId', (req, res) => {
+    app.get('/api/products/view/:productId', (req, res) => {
         Product.findOne({ _id: req.params.productId }, (err, product) => {
             if (err) res.send({ success: false });
             else res.send(product);
         });
+    });
+
+    app.post('/api/products/save', requireLogin, async (req, res) => {
+        req.user.savedProducts.push(req.body._id);
+        const user = await req.user.save();
+        res.send(user);
+    });
+
+    async function getProductsByIds(idArray) {
+        savedProducts = [];
+
+        for (var i = 0; i < idArray.length; i++) {
+            await Product.findOne({ _id: idArray[i] }, (err, doc) => {
+                if (err) {
+                    return { err }
+                } else {
+                    // console.log(doc);
+                    savedProducts.push(doc);
+                }
+            });
+        }
+
+        return savedProducts;
+    }
+
+    app.get('/api/products/save', requireLogin, async (req, res) => {
+        const productList = await getProductsByIds(req.user.savedProducts);
+        res.send(productList);
+    });
+
+    app.post('/api/products/unsave', requireLogin, async (req, res) => {
+        const { savedProducts } = req.user;
+        const { _id } = req.body;
+        for (var i = 0; i < savedProducts.length; i++) {
+            if (savedProducts[i] == _id) {
+                savedProducts.splice(i, 1);
+            }
+        }
+        const user = await req.user.save();
+        res.send(user);
     });
 };

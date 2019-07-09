@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Header.css';
 import { logo } from '../drawables';
-import { Button } from './common/Button';
+import { Button, IconButton } from './common';
 import Search from './Search';
+import { logoutIcon, inboxIcon, plusIcon } from '../drawables/icons';
 
 class Header extends Component {
     renderContent() {
@@ -28,14 +29,22 @@ class Header extends Component {
                     <li key="2">
                         <Button
                             text='CREATE AN AD'
+                            image={plusIcon}
                             onClick={() => {
                                 window.location.href = '/products/new';
                             }}
                         />
                     </li>,
                     <li key="3">
-                        <Button
-                            text='LOGOUT'
+                        <IconButton
+                            src={inboxIcon}
+                            onClick={() => {
+                            }}
+                        />
+                    </li>,
+                    <li key="4">
+                        <IconButton
+                            src={logoutIcon}
                             onClick={() => {
                                 window.location.href = '/api/logout';
                             }}

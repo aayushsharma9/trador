@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './ProductForm.css';
-import { createProduct, updateProduct, fetchProducts } from '../actions';
+import { createProduct, updateProduct, fetchProducts, fetchUserProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
 import { imageIconLight, closeIconLight } from '../drawables/icons';
@@ -41,7 +41,9 @@ class ProductForm extends Component {
         } else {
             this.props.createProduct(this.state).then((res) => {
                 alert(this.props.createSuccess ? 'Ad posted successfully!' : 'Error posting ad');
-                this.props.fetchProducts();
+                this.props.fetchProducts().then(() => {
+                    this.props.fetchUserProducts();
+                });
             });
         }
 
@@ -173,4 +175,4 @@ const mapStateToProps = ({ products }) => {
     };
 }
 
-export default connect(mapStateToProps, { createProduct, fetchProducts, updateProduct })(ProductForm);
+export default connect(mapStateToProps, { createProduct, fetchProducts, updateProduct, fetchUserProducts })(ProductForm);

@@ -1,35 +1,72 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import axios from 'axios';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './ProductPage.css';
-import { deleteProduct } from '../actions';
+import { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts } from '../actions';
 import { Button } from './common/Button';
-import { chevronLeft, chevronRight, messageIconLight, editIconLight, trashIcon } from '../drawables/icons';
+import { chevronLeft, chevronRight, messageIconLight, editIconLight, trashIcon, bookmarkIcon, bookmarkCancelIcon } from '../drawables/icons';
 
 class ProductPage extends Component {
     state = {
-        name: '',
-        price: '',
-        condition: '',
-        description: '',
-        category: '',
-        subCategory: '',
-        images: [],
-        _user: '',
-        postedBy: '',
-        datePosted: '',
+        product: {
+            name: '',
+            price: '',
+            condition: '',
+            description: '',
+            category: '',
+            subCategory: '',
+            images: [],
+            _user: '',
+            postedBy: '',
+            datePosted: ''
+        },
+        saved: false
     }
 
     componentWillMount() {
         this.fetchProductById(this.props.match.params.productId);
+        this.props.fetchSavedProducts().then(() => {
+            if (_.find(this.props.savedProducts, { _id: this.props.match.params.productId })) {
+                this.setState({ saved: true });
+            }
+        });
     }
 
     async fetchProductById(productId) {
-        const res = await axios.get(`/api/products/${productId}`);
-        this.setState(res.data);
+        const res = await axios.get(`/api/products/view/${productId}`);
+        this.setState({ product: res.data });
+    }
+
+    renderSaveButton() {
+        if (_.find(this.props.savedProducts, { _id: this.props.match.params.productId })) {
+            return (
+                <Button
+                    text='UNSAVE'
+                    image={bookmarkCancelIcon}
+                    onClick={async () => {
+                        await this.props.unsaveProduct({ _id: this.props.match.params.productId });
+                        this.setState({ saved: false });
+                        this.props.fetchSavedProducts();
+                    }}
+                />
+            );
+        }
+
+        return (
+            <Button
+                text='SAVE'
+                image={bookmarkIcon}
+                onClick={async () => {
+                    await this.props.saveProduct({ _id: this.props.match.params.productId });
+                    this.setState({ saved: true });
+                    this.props.fetchSavedProducts();
+                }}
+            />
+        );
     }
 
     renderButton() {
@@ -48,7 +85,6 @@ class ProductPage extends Component {
                         text='DELETE'
                         image={trashIcon}
                         onClick={async () => {
-                            console.log(this.props.match.params.productId);
                             const confirm = window.confirm('Do you want to delete this ad?');
                             if (confirm) {
                                 await this.props.deleteProduct(this.props.match.params.productId);
@@ -62,12 +98,21 @@ class ProductPage extends Component {
                 </span>
             );
         } else {
-            return <Button text='CONTACT SELLER' image={messageIconLight} filled />;
+            return (
+                <span style={{ display: 'flex', flexDirection: 'row' }}>
+                    <Button
+                        text='CONTACT SELLER'
+                        image={messageIconLight}
+                        filled
+                    />
+                    {this.renderSaveButton()}
+                </span>
+            );
         }
     }
 
     render() {
-        const { name, price, category, subCategory, description, postedBy, condition, datePosted, images } = this.state;
+        const { name, price, category, subCategory, description, postedBy, condition, datePosted, images } = this.state.product;
         return (
             <div className='product-page-root-container'>
                 <Header />
@@ -117,8 +162,9 @@ class ProductPage extends Component {
 const mapStateToProps = ({ user, products }) => {
     return ({
         user,
-        deleteSuccess: products.deleteSuccess
+        deleteSuccess: products.deleteSuccess,
+        savedProducts: products.savedProducts
     })
 }
 
-export default connect(mapStateToProps, { deleteProduct })(ProductPage);
+export default connect(mapStateToProps, { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts })(ProductPage);
