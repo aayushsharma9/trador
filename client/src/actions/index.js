@@ -24,17 +24,17 @@ export const fetchProducts = () => async dispatch => {
 export const fetchUserProducts = () => async dispatch => {
     const res = await axios.get('/api/products/current_user_products');
     console.log("Action creator says: ", res.data);
-    dispatch({ type: FETCH_USER_PRODUCTS, payload: res.data });
+    dispatch({ type: FETCH_USER_PRODUCTS, payload: res.data.success });
 }
 
 export const deleteProducts = (id) => async dispatch => {
     const res = await axios.delete('/api/products/delete', { id });
-    dispatch({ type: DELETE_PRODUCT }, res.data);
+    dispatch({ type: DELETE_PRODUCT, payload: res.data.success });
 }
 
 export const updateProduct = (product) => async dispatch => {
     const res = await axios.put('/api/products/update', product);
-    dispatch({ type: UPDATE_PRODUCT }, res.data);
+    dispatch({ type: UPDATE_PRODUCT, payload: res.data.success });
 }
 
 // export const getProductById = (productId) => async dispatch => {

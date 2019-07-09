@@ -19,7 +19,7 @@
 
 .product-list-item-container:hover {
     width: 31em;
-    margin: 0.75em;
+    /* margin: 0.75em; */
     box-shadow: 0em 0em 1em #ddd;
 }
 

@@ -12,7 +12,7 @@ cloudinary.config({
 
 async function uploadFiles(files) {
     var urlArray = [];
-    
+
     for (var i = 0; i < files.length; i++) {
         await cloudinary.uploader.upload(files[i], (err, result) => {
             if (err) {
@@ -93,11 +93,14 @@ module.exports = app => {
     });
 
     app.put('/api/products/update', requireLogin, (req, res) => {
-        if (req.body._user !== req.user.id) return;
-        const { id, name, price, condition, description, category, subCategory } = req.body;
-        Product.updateOne({ _id: id }, req.body, (err, raw) => {
-            if (err) res.send({ success: false });
-            else res.send({ success: true });
+        const { _id } = req.body;
+        Product.updateOne({ _id }, req.body, (err, raw) => {
+            if (err) {
+                res.send({ success: false });
+            }
+            else {
+                res.send({ success: true });
+            }
         });
     });
 

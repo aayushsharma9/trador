@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import './ProductForm.css';
-import { createProduct, fetchProducts } from '../actions';
+import { createProduct, updateProduct, fetchProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
 import { imageIconLight, closeIconLight } from '../drawables/icons';
@@ -17,11 +18,33 @@ class ProductForm extends Component {
         files: []
     }
 
+    componentWillMount() {
+        if (this.props.isEdit) {
+            this.fetchProductById(this.props.match.params.productId);
+            console.log(this.props.user);
+        }
+    }
+
+    async fetchProductById(productId) {
+        const res = await axios.get(`/api/products/${productId}`);
+        this.setState(res.data);
+        console.log(this.state);
+    }
+
     submit(event) {
-        this.props.createProduct(this.state).then((res) => {
-            alert(this.props.createSuccess ? 'Ad posted successfully!' : 'Error posting ad');
-            this.props.fetchProducts();
-        });
+        if (this.props.isEdit) {
+            this.props.updateProduct(this.state).then((res) => {
+                console.log(this.props);
+                alert(this.props.updateSuccess ? 'Ad updated successfully!' : 'Error updating ad');
+                this.props.fetchProducts();
+            });
+        } else {
+            this.props.createProduct(this.state).then((res) => {
+                alert(this.props.createSuccess ? 'Ad posted successfully!' : 'Error posting ad');
+                this.props.fetchProducts();
+            });
+        }
+
         event.preventDefault();
     }
 
@@ -57,7 +80,7 @@ class ProductForm extends Component {
                     {this.state.files.map((item, index) => (
                         <div className='image-thumbnail-container' key={item}>
                             <img src={item} alt='' className='image-thumbnail' />
-                            <img src={closeIconLight} className='image-thumbnail-remove-button' alt='' onClick={() => this.removeImage(item)}/>
+                            <img src={closeIconLight} className='image-thumbnail-remove-button' alt='' onClick={() => this.removeImage(item)} />
                         </div>
                     ))}
                 </div>
@@ -144,7 +167,10 @@ class ProductForm extends Component {
 }
 
 const mapStateToProps = ({ products }) => {
-    return { createSuccess: products.createSuccess };
+    return {
+        createSuccess: products.createSuccess,
+        updateSuccess: products.updateSuccess
+    };
 }
 
-export default connect(mapStateToProps, { createProduct, fetchProducts })(ProductForm);
+export default connect(mapStateToProps, { createProduct, fetchProducts, updateProduct })(ProductForm);

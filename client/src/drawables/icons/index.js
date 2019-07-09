@@ -5,3 +5,4 @@ export const chevronRight = require('./chevron-right.svg');
 export const chevronLeft = require('./chevron-left.svg');
 export const archiveIcon = require('./archive.svg');
 export const messageIconLight = require('./message-light.svg');
+export const editIconLight = require('./edit-light.svg');

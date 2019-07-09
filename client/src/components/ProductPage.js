@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './ProductPage.css';
 import { Button } from './common/Button';
-import { chevronLeft, chevronRight, messageIconLight } from '../drawables/icons';
+import { chevronLeft, chevronRight, messageIconLight, editIconLight } from '../drawables/icons';
 
 class ProductPage extends Component {
     state = {
@@ -23,11 +24,27 @@ class ProductPage extends Component {
 
     componentWillMount() {
         this.fetchProductById(this.props.match.params.productId);
+        console.log(this.props.user);
     }
 
     async fetchProductById(productId) {
         const res = await axios.get(`/api/products/${productId}`);
         this.setState(res.data);
+    }
+
+    renderButton() {
+        if (this.state._user === this.props.user._id) {
+            return <Button
+                text='EDIT AD'
+                image={editIconLight}
+                filled
+                onClick={() => {
+                    window.location.href = `/products/edit/${this.props.match.params.productId}`;
+                }}
+            />;
+        } else {
+            return <Button text='CONTACT SELLER' image={messageIconLight} filled />;
+        }
     }
 
     render() {
@@ -47,8 +64,8 @@ class ProductPage extends Component {
                         </ButtonBack>
                         <Slider className='product-page-carousel-slider'>
                             {images.map((item, index) => (
-                                <Slide index={index}>
-                                    <img src={item} key={item} className='product-page-image' alt='' />
+                                <Slide index={index} key={item}>
+                                    <img src={item} className='product-page-image' alt='' />
                                 </Slide>
                             ))}
                         </Slider>
@@ -64,7 +81,7 @@ class ProductPage extends Component {
                         </span>
                         <p className='product-page-text product-page-subtitle'>Sold by {postedBy}</p>
                         <p className='product-page-text product-page-title'>₹ {price}</p>
-                        <Button text='CONTACT SELLER' image={messageIconLight} filled />
+                        {this.renderButton()}
                         <div style={{ display: 'flex', marginTop: '0.5%', flexDirection: 'column' }}>
                             <p className='product-page-text-nomargin product-page-subtitle'>About this product</p>
                             <p className='product-page-text-nomargin product-page-subtitle faded'>{condition}</p>
@@ -78,4 +95,7 @@ class ProductPage extends Component {
     }
 }
 
-export default ProductPage;
+const mapStateToProps = ({ user }) => {
+    return ({ user })
+}
+export default connect(mapStateToProps, null)(ProductPage);
