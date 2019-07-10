@@ -24,16 +24,26 @@ class ProductPage extends Component {
             postedBy: '',
             datePosted: ''
         },
-        saved: false
+        savedProducts: [],
+        saved: false,
+        loading: false
     }
 
-    componentWillMount() {
+    async componentWillMount() {
         this.fetchProductById(this.props.match.params.productId);
-        this.props.fetchSavedProducts().then(() => {
-            if (_.find(this.props.savedProducts, { _id: this.props.match.params.productId })) {
-                this.setState({ saved: true });
-            }
-        });
+        await this.props.fetchSavedProducts();
+        this.setState({ savedProducts: this.props.savedProducts });
+        this.setState({ saved: await this.checkSaved() });
+    }
+
+    componentWillUpdate() {
+        console.log(this.state);
+    }
+
+    async checkSaved() {
+        const found = await _.find(this.state.savedProducts, { _id: this.props.match.params.productId })
+        if (found) return true;
+        else return false;
     }
 
     async fetchProductById(productId) {
@@ -42,15 +52,17 @@ class ProductPage extends Component {
     }
 
     renderSaveButton() {
-        if (_.find(this.props.savedProducts, { _id: this.props.match.params.productId })) {
+        if (this.state.loading) return;
+
+        if (this.state.saved) {
             return (
                 <Button
                     text='UNSAVE'
                     image={bookmarkCancelIcon}
                     onClick={async () => {
+                        this.setState({ loading: true });
                         await this.props.unsaveProduct({ _id: this.props.match.params.productId });
-                        this.setState({ saved: false });
-                        this.props.fetchSavedProducts();
+                        this.setState({ saved: false, loading: false });
                     }}
                 />
             );
@@ -61,9 +73,9 @@ class ProductPage extends Component {
                 text='SAVE'
                 image={bookmarkIcon}
                 onClick={async () => {
+                    this.setState({ loading: true });
                     await this.props.saveProduct({ _id: this.props.match.params.productId });
-                    this.setState({ saved: true });
-                    this.props.fetchSavedProducts();
+                    this.setState({ saved: true, loading: false });
                 }}
             />
         );

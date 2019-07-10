@@ -14,18 +14,13 @@ class Home extends Component {
         savedProducts: []
     }
 
-    componentWillMount() {
-        this.props.fetchProducts().then(() => {
-            this.props.fetchUserProducts();
-            this.props.fetchSavedProducts();
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-        if (nextProps.allProducts) this.setState({ allProducts: nextProps.allProducts });
-        if (nextProps.userProducts) this.setState({ userProducts: nextProps.userProducts });
-        if (nextProps.savedProducts) this.setState({ savedProducts: nextProps.savedProducts });
+    async componentWillMount() {
+        await this.props.fetchProducts();
+        this.setState({ allProducts: this.props.allProducts });
+        await this.props.fetchUserProducts();
+        this.setState({ userProducts: this.props.userProducts });
+        await this.props.fetchSavedProducts();
+        this.setState({ savedProducts: this.props.savedProducts });
     }
 
     renderSelfProductList(array, emptyMessage) {

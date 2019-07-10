@@ -41,8 +41,8 @@ export const saveProduct = (product) => async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data });    
 }
 
-export const unsaveProduct = (_id) => async dispatch => {
-    const res = await axios.post('/api/products/unsave', { _id });
+export const unsaveProduct = (product) => async dispatch => {
+    const res = await axios.post('/api/products/unsave', product);
     dispatch({ type: FETCH_USER, payload: res.data });    
 }
 
