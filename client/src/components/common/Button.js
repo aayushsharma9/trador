@@ -10,7 +10,7 @@ class Button extends Component {
     componentWillMount() {
         if (this.props.filled) {
             this.setState({
-                buttonStyle: 'button-root-container filled',
+                buttonStyle: 'filled',
                 textStyle: 'button-text light'
             })
         }

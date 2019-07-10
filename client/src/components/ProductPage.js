@@ -8,7 +8,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import './ProductPage.css';
 import { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts } from '../actions';
 import { Button } from './common/Button';
-import { chevronLeft, chevronRight, messageIconLight, editIconLight, trashIcon, bookmarkIcon, bookmarkCancelIcon } from '../drawables/icons';
+import { chevronLeft, chevronRight, messageIconLight, editIconLight, trashIcon, bookmarkIcon, bookmarkCancelIcon, userIconLight } from '../drawables/icons';
 
 class ProductPage extends Component {
     state = {
@@ -31,13 +31,11 @@ class ProductPage extends Component {
 
     async componentWillMount() {
         this.fetchProductById(this.props.match.params.productId);
-        await this.props.fetchSavedProducts();
-        this.setState({ savedProducts: this.props.savedProducts });
-        this.setState({ saved: await this.checkSaved() });
-    }
-
-    componentWillUpdate() {
-        console.log(this.state);
+        if (!_.isEmpty(this.props.user)) {
+            await this.props.fetchSavedProducts();
+            this.setState({ savedProducts: this.props.savedProducts });
+            this.setState({ saved: await this.checkSaved() });
+        }
     }
 
     async checkSaved() {
@@ -53,7 +51,6 @@ class ProductPage extends Component {
 
     renderSaveButton() {
         if (this.state.loading) return;
-
         if (this.state.saved) {
             return (
                 <Button
@@ -82,44 +79,60 @@ class ProductPage extends Component {
     }
 
     renderButton() {
-        if (this.state._user === this.props.user._id) {
-            return (
-                <span style={{ display: 'flex', flexDirection: 'row' }}>
-                    <Button
-                        text='EDIT AD'
-                        image={editIconLight}
-                        filled
-                        onClick={() => {
-                            window.location.href = `/products/edit/${this.props.match.params.productId}`;
-                        }}
-                    />
-                    <Button
-                        text='DELETE'
-                        image={trashIcon}
-                        onClick={async () => {
-                            const confirm = window.confirm('Do you want to delete this ad?');
-                            if (confirm) {
-                                await this.props.deleteProduct(this.props.match.params.productId);
-                                alert(this.props.deleteSuccess ? 'Ad deleted successfully!' : 'Error deleting ad');
-                                window.location.href = '/';
-                            } else {
+        switch (this.props.user._id) {
+            case undefined:
+                return (
+                    <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Button
+                            text='LOG IN TO CONTACT SELLER OR SAVE ITEM'
+                            image={userIconLight}
+                            filled
+                            onClick={() => {
+                                window.location.href = '/auth';
+                            }}
+                        />
+                    </span>
+                );
+
+            case this.state.product._user:
+                return (
+                    <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Button
+                            text='EDIT AD'
+                            image={editIconLight}
+                            filled
+                            onClick={() => {
+                                window.location.href = `/products/edit/${this.props.match.params.productId}`;
+                            }}
+                        />
+                        <Button
+                            text='DELETE'
+                            image={trashIcon}
+                            onClick={async () => {
+                                const confirm = window.confirm('Do you want to delete this ad?');
+                                if (confirm) {
+                                    await this.props.deleteProduct(this.props.match.params.productId);
+                                    alert(this.props.deleteSuccess ? 'Ad deleted successfully!' : 'Error deleting ad');
+                                    window.location.href = '/';
+                                } else {
+                                }
                             }
-                        }
-                        }
-                    />
-                </span>
-            );
-        } else {
-            return (
-                <span style={{ display: 'flex', flexDirection: 'row' }}>
-                    <Button
-                        text='CONTACT SELLER'
-                        image={messageIconLight}
-                        filled
-                    />
-                    {this.renderSaveButton()}
-                </span>
-            );
+                            }
+                        />
+                    </span>
+                );
+
+            default:
+                return (
+                    <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Button
+                            text='CONTACT SELLER'
+                            image={messageIconLight}
+                            filled
+                        />
+                        {this.renderSaveButton()}
+                    </span>
+                );
         }
     }
 

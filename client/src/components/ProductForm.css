@@ -110,7 +110,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0.3em;
     margin: 0 1em;
     background-color: var(--accent-color);
     border-width: 0;
@@ -129,13 +128,13 @@
     text-align: center;
     letter-spacing: 0.1em;
     margin: 0;   
-    padding-top: 0.4em;
+    padding: 0.4em 0.7em;
+    padding-top: 0.7em;
 }
 
 .product-form-image-input-icon {
-    height: 1.5em;
-    width: 1.5em;
-    margin-right: 0.4em;
+    height: 1.2em;
+    width: 1.2em;
     pointer-events: none;
 }
 

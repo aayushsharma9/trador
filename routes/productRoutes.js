@@ -68,19 +68,25 @@ module.exports = app => {
         });
     });
 
-    // app.get('/api/products/search', (req, res) => {
-    //     const { searchString } = req.body;
-    //     var re = new RegExp("^" + `/$searchString/`);
-    //     Product.find({
-    //         name: re
-    //     }, (err, products) => {
-    //             if (err) {
-    //                 console.log(err);
-    //             } else {
-    //                 console.log(products);
-    //             }
-    //     })
-    // });
+    app.post('/api/products/search', (req, res) => {
+        const { searchString } = req.body;
+        var regex = new RegExp(searchString, 'i');
+        Product.find({
+            $or: [
+                { name: regex },
+                { description: regex },
+                { postedBy: regex },
+                { category: regex },
+                { subCategory: regex }
+            ]
+        }, (err, products) => {
+            if (err) {
+                res.send({ success: false });
+            } else {
+                res.send(products);
+            }
+        });
+    });
 
     app.delete('/api/products/delete/:productId', requireLogin, (req, res) => {
         console.log(req.params.productId);

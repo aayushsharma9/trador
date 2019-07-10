@@ -35,7 +35,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 1em;
-    height: 70vh;
     width: 35em;
     overflow-y: scroll;
     padding: 1em 0;
@@ -43,13 +42,17 @@
 }
 
 .self {
+    margin-top: 1em;
     width: 23em;
-    height: 50vh;
+    height: 60vh;
+    background-color: rgba(10, 15, 50, 0.1);    
+    border-radius: 0.3em;
+    border-top-width: 1em;
+    border-color: var(--on-background-color);
 }
 
 .home-product-list::-webkit-scrollbar {
     width: 0em;
-    height: 10em;
 }
 
 .home-product-list::-webkit-scrollbar-track {

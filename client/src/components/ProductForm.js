@@ -5,7 +5,7 @@ import './ProductForm.css';
 import { createProduct, updateProduct, fetchProducts, fetchUserProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
-import { imageIconLight, closeIconLight } from '../drawables/icons';
+import { imageIconLight, closeIconLight, checkIconLight } from '../drawables/icons';
 
 class ProductForm extends Component {
     state = {
@@ -87,7 +87,6 @@ class ProductForm extends Component {
                     ))}
                 </div>
                 <div className='product-form-image-input-container'>
-                    <img src={imageIconLight} alt='' className='product-form-image-input-icon' />
                     <label className='product-form-image-input-label'>
                         ADD IMAGES
                         <input
@@ -161,7 +160,7 @@ class ProductForm extends Component {
                             />
                         </div>
                     </div>
-                    <Button type='submit' text='SUBMIT' onClick={this.submit.bind(this)} />
+                    <Button type='submit' text='SUBMIT' image={checkIconLight} filled onClick={this.submit.bind(this)} />
                 </form>
             </div >
         );

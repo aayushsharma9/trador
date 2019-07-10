@@ -1,11 +1,11 @@
-.button-root-container {
+.button-root-container, .filled {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 0em 0.8em;
     margin: 0.5em;
-    border-width: 0.1em;
+    border-width: 0.05em;
     border-style: solid;
     border-radius: 0.5em;
     border-color: var(--on-background-color-faded);
@@ -26,6 +26,7 @@
 
 .button-root-container:hover {
     border-color: var(--on-background-color);
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 .button-text {

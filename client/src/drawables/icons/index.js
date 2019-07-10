@@ -12,3 +12,5 @@ export const inboxIcon = require('./inbox.svg');
 export const plusIcon = require('./plus.svg');
 export const bookmarkIcon = require('./bookmark.svg');
 export const bookmarkCancelIcon = require('./bookmark-cancel.svg');
+export const userIconLight = require('./user-light.svg');
+export const checkIconLight = require('./check-light.svg');
