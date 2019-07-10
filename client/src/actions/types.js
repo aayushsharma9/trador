@@ -5,4 +5,5 @@ export const DELETE_PRODUCT = 'delete_product';
 export const UPDATE_PRODUCT = 'update_product';
 export const FETCH_USER_PRODUCTS = 'fetch_user_products';
 export const FETCH_SAVED_PRODUCTS = 'fetch_saved_products';
+export const FETCH_SEARCH_RESULT = 'fetch_search_result';
 // export const FETCH_PRODUCT_BY_ID = 'fetch_product_by_id';

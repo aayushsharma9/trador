@@ -11,16 +11,23 @@ class Home extends Component {
     state = {
         allProducts: [],
         userProducts: [],
-        savedProducts: []
+        savedProducts: [],
+        productsToShow: []
     }
 
     async componentWillMount() {
         await this.props.fetchProducts();
-        this.setState({ allProducts: this.props.allProducts });
+        this.setState({ allProducts: this.props.allProducts, productsToShow: this.props.allProducts });
         await this.props.fetchUserProducts();
         this.setState({ userProducts: this.props.userProducts });
         await this.props.fetchSavedProducts();
         this.setState({ savedProducts: this.props.savedProducts });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.searchResult) {
+            this.setState({ productsToShow: nextProps.searchResult });
+        }
     }
 
     renderSelfProductList(array, emptyMessage) {
@@ -41,7 +48,7 @@ class Home extends Component {
                 <Header />
                 <div className='home-content'>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <span style={{ display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={styles.subListTextContainer}>
                             <img src={archiveIcon} style={{ height: '1.1em', width: '1.1em', marginRight: '0.7em', marginTop: '0.1em' }} alt='' />
                             <p className='home-text'>Your listings</p>
                         </span>
@@ -50,12 +57,12 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className='home-product-list'>
-                        {this.state.allProducts.map((item, index) => (
+                        {this.state.productsToShow.map((item, index) => (
                             <ProductListItem key={item._id} item={item} />
                         ))}
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <span style={{ display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={styles.subListTextContainer}>
                             <img src={bookmarkIcon} style={{ height: '1.1em', width: '1.1em', marginRight: '0.7em', marginTop: '0.1em' }} alt='' />
                             <p className='home-text'>Saved Items</p>
                         </span>
@@ -69,11 +76,23 @@ class Home extends Component {
     }
 }
 
+const styles = {
+    subListTextContainer: {
+        display: 'flex',
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '4em'
+    }
+}
+
 const mapStateToProps = ({ products }) => {
     return {
         allProducts: products.allProducts,
         userProducts: products.userProducts,
-        savedProducts: products.savedProducts
+        savedProducts: products.savedProducts,
+        searchResult: products.searchResult
     }
 }
 

@@ -4,7 +4,8 @@ import {
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     FETCH_USER_PRODUCTS,
-    FETCH_SAVED_PRODUCTS
+    FETCH_SAVED_PRODUCTS,
+    FETCH_SEARCH_RESULT
 } from "../actions/types";
 
 export default function (state = {}, action) {
@@ -15,6 +16,7 @@ export default function (state = {}, action) {
         case CREATE_PRODUCT: return { ...state, createSuccess: action.payload };
         case UPDATE_PRODUCT: return { ...state, updateSuccess: action.payload };
         case DELETE_PRODUCT: return { ...state, deleteSuccess: action.payload };
+        case FETCH_SEARCH_RESULT: return { ...state, searchResult: action.payload };
         default: return state;
     }
 }
