@@ -16,7 +16,7 @@ class ProductListItem extends Component {
                             <p className='product-list-item-text sub faded'>{subCategory}</p>
                         </div>
                         <p className='product-list-item-text sub'>{condition}</p>
-                        <div style={{ display: 'flex', flex: 1, flexDirection: 'row', alignItems: 'space-between' }}>
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
                             <p className='product-list-item-text sub'>₹ {price}</p>
                             <p className='product-list-item-text sub faded'>Posted by {postedBy}</p>
                         </div>

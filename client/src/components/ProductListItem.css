@@ -27,13 +27,13 @@
     width: 21em;
 }
 
-.product-list-item-text-container {
+.product-list-item-text-container, .min {
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    padding: 0.2em 0.5em;
+    padding: 0.5em 0.5em;
 }
 
 .product-list-item-title-text, .sub, .faded {

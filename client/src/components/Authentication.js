@@ -1,5 +1,5 @@
 import React from 'react';
-import { logo, googleLogo, facebookLogo } from '../drawables';
+import { logoSolid, googleLogo, facebookLogo } from '../drawables';
 import { AuthButton } from './common';
 import './Authentication.css';
 import { onbackgroundColor, backgroundColor } from '../values/colors';
@@ -7,7 +7,7 @@ import { onbackgroundColor, backgroundColor } from '../values/colors';
 const Landing = () => {
     return (
         <span className='auth-root-container'>
-            <img className='auth-logo-image' src={logo} alt='Logo' />        
+            <img className='auth-logo-image' src={logoSolid} alt='Logo' />        
             <p className='auth-tagline-text'>Unlimited Classfieds. For Free.</p>
             <AuthButton
                 text='LOGIN WITH GOOGLE'

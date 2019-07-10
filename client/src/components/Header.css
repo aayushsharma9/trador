@@ -10,7 +10,7 @@
 .header-logo-image {
     display: flex;
     width: 5em;
-    margin: 2em;
+    margin: 0 2em;
 }
 
 .header-content-list {

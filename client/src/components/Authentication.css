@@ -5,7 +5,7 @@ body {
 
 .auth-root-container {
     display: flex;
-    background-image: radial-gradient(circle, #9dfffc, #8bf1ed, #79e2dd, #67d4ce, #54c6bf);         /* background-color: var(--background-color); */
+    background-image: linear-gradient(to right bottom, #3bfff8, #60fcfb, #7bf8fd, #93f5fc, #a7f1fa);
     align-items: center;
     justify-content: center;
     flex-flow: column;
@@ -14,7 +14,8 @@ body {
 
 .auth-logo-image {
     width: 10em;
-    margin-bottom: 0.4em
+    margin-bottom: 0.5em;
+    opacity: 0.9;
 }
 
 .auth-tagline-text {
@@ -22,6 +23,6 @@ body {
     font-weight: 600;
     font-size: 1.2em;
     color: var(--accent-color);
-    opacity: 0.7;
+    opacity: 0.8;
     margin-bottom: 1em
 }

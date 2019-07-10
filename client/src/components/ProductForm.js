@@ -5,7 +5,7 @@ import './ProductForm.css';
 import { createProduct, updateProduct, fetchProducts, fetchUserProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
-import { imageIconLight, closeIconLight, checkIconLight } from '../drawables/icons';
+import { closeIconLight, checkIconLight } from '../drawables/icons';
 
 class ProductForm extends Component {
     state = {
