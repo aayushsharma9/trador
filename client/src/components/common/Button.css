@@ -13,6 +13,7 @@
     background: none;
     outline: none;
     transition: 150ms ease all;
+    cursor: pointer;
 }
 
 .filled {

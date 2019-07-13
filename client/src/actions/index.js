@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { FETCH_USER, CREATE_PRODUCT, FETCH_ALL_PRODUCTS, DELETE_PRODUCT, UPDATE_PRODUCT, FETCH_USER_PRODUCTS, FETCH_SAVED_PRODUCTS, FETCH_SEARCH_RESULT } from './types';
+import {
+    FETCH_USER,
+    CREATE_PRODUCT,
+    FETCH_ALL_PRODUCTS,
+    DELETE_PRODUCT,
+    UPDATE_PRODUCT,
+    FETCH_USER_PRODUCTS,
+    FETCH_SEARCH_RESULT
+} from './types';
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get('/api/current_user');
@@ -48,7 +56,7 @@ export const unsaveProduct = (product) => async dispatch => {
 
 export const fetchSavedProducts = () => async dispatch => {
     const res = await axios.get('/api/products/save');
-    dispatch({ type: FETCH_SAVED_PRODUCTS, payload: res.data });
+    dispatch({ type: FETCH_USER, payload: res.data });
 }
 
 export const fetchSearchResult = (searchString) => async dispatch => {
@@ -56,7 +64,12 @@ export const fetchSearchResult = (searchString) => async dispatch => {
     dispatch({ type: FETCH_SEARCH_RESULT, payload: res.data });
 }
 
-// export const getProductById = (productId) => async dispatch => {
-//     const res = await axios.get(`/api/products/${productId}`);
-//     dispatch({ type: FETCH_PRODUCT_BY_ID }, res.data)
-// }
+export const createChatRoom = (chatRoom, recipientId) => async dispatch => {
+    const res = await axios.post(`/api/chatrooms/new/${recipientId}`, chatRoom);
+    dispatch({ type: FETCH_USER, payload: res.data });
+}
+
+export const fetchChatRooms = () => async dispatch => {
+    const res = await axios.get('/api/chatrooms/all');
+    dispatch({ type: FETCH_USER, payload: res.data });
+}

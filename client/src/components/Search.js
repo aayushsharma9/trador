@@ -16,7 +16,8 @@ class Search extends Component {
                     type='text'
                     placeholder='Search'
                     className='search-bar-field'
-                    onChange={(event) => { this.handleOnChange(event.target.value); }} />
+                    onChange={(event) => { this.handleOnChange(event.target.value); }}
+                />
                 <img src={searchIcon} className='search-bar-icon' alt='search' />
             </div>
         );

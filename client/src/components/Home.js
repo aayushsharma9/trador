@@ -11,8 +11,8 @@ class Home extends Component {
     state = {
         allProducts: [],
         userProducts: [],
-        savedProducts: [],
-        productsToShow: []
+        productsToShow: [],
+        savedProducts: []
     }
 
     async componentWillMount() {
@@ -21,13 +21,11 @@ class Home extends Component {
         await this.props.fetchUserProducts();
         this.setState({ userProducts: this.props.userProducts });
         await this.props.fetchSavedProducts();
-        this.setState({ savedProducts: this.props.savedProducts });
+        this.setState({ savedProducts: this.props.user.savedProducts });
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.searchResult) {
-            this.setState({ productsToShow: nextProps.searchResult });
-        }
+        if (nextProps.searchResult) this.setState({ productsToShow: nextProps.searchResult });
     }
 
     renderSelfProductList(array, emptyMessage) {
@@ -87,8 +85,9 @@ const styles = {
     }
 }
 
-const mapStateToProps = ({ products }) => {
+const mapStateToProps = ({ products, user }) => {
     return {
+        user,
         allProducts: products.allProducts,
         userProducts: products.userProducts,
         savedProducts: products.savedProducts,

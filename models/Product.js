@@ -9,8 +9,8 @@ const productSchema = new Schema({
     description: String,
     category: String,
     subCategory: String,
-    _user: { type: Schema.Types.ObjectId, ref: 'User' },
-    postedBy: { type: Schema.Types.String, ref: 'User' },
+    _user: { type: Schema.Types.ObjectId, ref: 'users' },
+    postedBy: { type: Schema.Types.String, ref: 'users' },
     datePosted: String
 });
 

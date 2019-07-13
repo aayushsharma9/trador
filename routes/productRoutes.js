@@ -77,7 +77,8 @@ module.exports = app => {
                 { description: regex },
                 { postedBy: regex },
                 { category: regex },
-                { subCategory: regex }
+                { subCategory: regex },
+                { datePosted: regex }
             ]
         }, (err, products) => {
             if (err) {
@@ -89,7 +90,6 @@ module.exports = app => {
     });
 
     app.delete('/api/products/delete/:productId', requireLogin, (req, res) => {
-        console.log(req.params.productId);
         Product.findOneAndDelete({ _id: req.params.productId }, (err, doc) => {
             if (err) {
                 res.send({ success: false });
@@ -125,43 +125,35 @@ module.exports = app => {
         });
     });
 
-    app.post('/api/products/save', requireLogin, async (req, res) => {
-        req.user.savedProducts.push(req.body._id);
-        const user = await req.user.save();
-        res.send(user);
+    app.get('/api/products/save', requireLogin, async (req, res) => {
+        User.findOne({ _id: req.user._id })
+            .populate('savedProducts').exec((err, user) => {
+                res.send(user);
+            })
     });
 
-    async function getProductsByIds(idArray) {
-        savedProducts = [];
-
-        for (var i = 0; i < idArray.length; i++) {
-            await Product.findOne({ _id: idArray[i] }, (err, doc) => {
-                if (err) {
-                    return { err }
-                } else {
-                    // console.log(doc);
-                    savedProducts.push(doc);
-                }
+    
+    app.post('/api/products/save', requireLogin, async (req, res) => {
+        req.user.savedProducts.push(req.body._id);
+        await req.user.save();
+        User.findOne({ _id: req.user._id })
+            .populate('savedProducts').exec((err, user) => {
+                res.send(user);
             });
-        }
-
-        return savedProducts;
-    }
-
-    app.get('/api/products/save', requireLogin, async (req, res) => {
-        const productList = await getProductsByIds(req.user.savedProducts);
-        res.send(productList);
     });
 
     app.post('/api/products/unsave', requireLogin, async (req, res) => {
         const { savedProducts } = req.user;
         const { _id } = req.body;
         for (var i = 0; i < savedProducts.length; i++) {
-            if (savedProducts[i] == _id) {
+            if (savedProducts[i]._id == _id) {
                 savedProducts.splice(i, 1);
             }
         }
         const user = await req.user.save();
-        res.send(user);
+        User.findOne({ _id: req.user._id })
+        .populate('savedProducts').exec((err, user) => {
+            res.send(user);
+        });
     });
 };

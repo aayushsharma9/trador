@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './ProductPage.css';
-import { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts } from '../actions';
+import { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts, createChatRoom } from '../actions';
 import { Button } from './common/Button';
 import { chevronLeft, chevronRight, messageIconLight, editIconLight, trashIcon, bookmarkIcon, bookmarkCancelIcon, userIconLight } from '../drawables/icons';
 
@@ -33,7 +33,7 @@ class ProductPage extends Component {
         this.fetchProductById(this.props.match.params.productId);
         if (!_.isEmpty(this.props.user)) {
             await this.props.fetchSavedProducts();
-            this.setState({ savedProducts: this.props.savedProducts });
+            this.setState({ savedProducts: this.props.user.savedProducts });
             this.setState({ saved: await this.checkSaved() });
         }
     }
@@ -129,6 +129,12 @@ class ProductPage extends Component {
                             text='CONTACT SELLER'
                             image={messageIconLight}
                             filled
+                            onClick={async () => {
+                                await this.props.createChatRoom({
+                                    recipients: [this.props.user.name, this.state.product.postedBy]
+                                }, this.state.product._user);
+                                window.location.href = '/chat';
+                            }}
                         />
                         {this.renderSaveButton()}
                     </span>
@@ -195,8 +201,7 @@ const mapStateToProps = ({ user, products }) => {
     return ({
         user,
         deleteSuccess: products.deleteSuccess,
-        savedProducts: products.savedProducts
     })
 }
 
-export default connect(mapStateToProps, { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts })(ProductPage);
+export default connect(mapStateToProps, { deleteProduct, saveProduct, unsaveProduct, fetchSavedProducts, createChatRoom })(ProductPage);

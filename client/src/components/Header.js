@@ -39,6 +39,7 @@ class Header extends Component {
                         <IconButton
                             src={inboxIcon}
                             onClick={() => {
+                                window.location.href = '/chat';
                             }}
                         />
                     </li>,

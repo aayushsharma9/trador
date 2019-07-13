@@ -2,9 +2,8 @@
     display: flex;
     position: relative;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
-    /* background-color: var(--background-color); */
     background-image: linear-gradient(to left bottom, #fafcff, #f7fbff, #f3fbff, #eefaff, #eafaff);
     min-height: 100vh;
 }
@@ -37,6 +36,7 @@
     align-items: center;
     margin-top: 1em;
     width: 35em;
+    max-height: 38em;
     overflow-y: scroll;
     padding: 1em 0;
     margin: 0 2em;
@@ -64,14 +64,6 @@
 .home-product-list::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--accent-color);
-}
-
-.home-product-list-top {
-    top: 5em;
-}
-
-.home-product-list-bottom {
-    top: 42em;
 }
 
 .home-product-list-top, .home-product-list-bottom {

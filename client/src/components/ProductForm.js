@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './ProductForm.css';
 import { createProduct, updateProduct, fetchProducts, fetchUserProducts } from '../actions';
 import { Button, Input, TextArea } from './common';
 import { logo } from '../drawables';
-import { closeIconLight, checkIconLight } from '../drawables/icons';
+import { closeIconLight, checkIconLight, closeIcon } from '../drawables/icons';
 
 class ProductForm extends Component {
     state = {
@@ -31,6 +32,19 @@ class ProductForm extends Component {
         console.log(this.state);
     }
 
+    clearFields(event) {
+        this.setState({
+            name: '',
+            price: '',
+            category: '',
+            subCategory: '',
+            condition: 'Brand New',
+            description: '',
+            files: []
+        });
+        event.preventDefault();
+    }
+
     submit(event) {
         if (this.props.isEdit) {
             this.props.updateProduct(this.state).then((res) => {
@@ -46,8 +60,6 @@ class ProductForm extends Component {
                 });
             });
         }
-
-        event.preventDefault();
     }
 
     async readImages(event) {
@@ -66,7 +78,6 @@ class ProductForm extends Component {
 
     removeImage(item) {
         const fileArray = this.state.files;
-        console.log("Remove image called");
         for (var i = 0; i < fileArray.length; i++) {
             if (fileArray[i] === item) {
                 fileArray.splice(i, 1);
@@ -108,7 +119,9 @@ class ProductForm extends Component {
             <div className='product-form-root-container'>
                 <form className='product-form'>
                     <span className='product-form-header-container'>
-                        <img src={logo} className='product-form-logo' alt='logo' />
+                        <Link to='/'>
+                            <img src={logo} className='product-form-logo' alt='logo' />
+                        </Link>
                         <p className='product-form-header-text'>Create an ad.</p>
                     </span>
                     <div className='product-form-horizontal-section'>
@@ -160,7 +173,10 @@ class ProductForm extends Component {
                             />
                         </div>
                     </div>
-                    <Button type='submit' text='SUBMIT' image={checkIconLight} filled onClick={this.submit.bind(this)} />
+                    <span style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Button text='CLEAR' image={closeIcon} onClick={this.clearFields.bind(this)} />
+                        <Button type='submit' text='SUBMIT' image={checkIconLight} filled onClick={this.submit.bind(this)} />
+                    </span>
                 </form>
             </div >
         );

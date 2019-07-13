@@ -7,6 +7,7 @@ import Authentication from './Authentication';
 import Home from './Home';
 import ProductForm from './ProductForm';
 import ProductPage from './ProductPage';
+import ChatRoom from './ChatRoom';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
                         <Route path='/products/new' component={ProductForm} />
                         <Route path='/products/edit/:productId' render={(props) => <ProductForm {...props} isEdit={true} />} />                        
                         <Route path='/products/view/:productId' component={ProductPage} />
+                        <Route path='/chat' component={ChatRoom} />
                     </div>
                 </BrowserRouter>
             </div>
