@@ -8,7 +8,7 @@ import { Button } from './common';
 
 var socket = socketIOClient('localhost:5000');
 if (process.env.NODE_ENV === 'production') {
-    socket = socketIOClient(`https://trador.herokuapp.com:${process.env.PORT}`);    
+    socket = socketIOClient('/');    
 }
 
 class ChatRoom extends Component {
