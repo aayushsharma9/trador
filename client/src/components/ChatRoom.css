@@ -31,7 +31,7 @@
     background-color: rgba(48, 64, 95, 0.1);
 }
 
-.chat-room-message-box-first:first-child {
+.chat-room-message-box-first > :first-child {
     margin-top: auto;
 }
 

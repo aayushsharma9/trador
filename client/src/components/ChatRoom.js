@@ -8,7 +8,7 @@ import { Button } from './common';
 
 var socket = socketIOClient('localhost:5000');
 if (process.env.NODE_ENV === 'production') {
-    socket = socketIOClient('/');    
+    socket = socketIOClient('/');
 }
 
 class ChatRoom extends Component {
@@ -53,10 +53,15 @@ class ChatRoom extends Component {
             const mes = this.state.messages;
             mes.push(chat);
             this.setState({ messages: mes });
-        })
+        });
         this.setState({
             user: this.props.user
-        })
+        });
+        this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
     }
 
     async joinRoom(roomId) {
@@ -129,6 +134,10 @@ class ChatRoom extends Component {
         )
     }
 
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
     render() {
         return (
             <div className='chat-room-root-container'>
@@ -141,7 +150,10 @@ class ChatRoom extends Component {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                         <div className='chat-room-message-box'>
+                            <div style={{ flex: 1 }} />
                             {this.state.messages.map((item, index) => this.renderMessageItem(item, index))}
+                            <div style={{ float: "left", clear: "both" }}
+                                ref={(el) => { this.messagesEnd = el; }} />
                         </div>
                         <div className='chat-room-input-container'>
                             <input
