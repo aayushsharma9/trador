@@ -6,7 +6,10 @@ import './ChatRoom.css';
 import { fetchChatRooms } from '../actions';
 import { Button } from './common';
 
-const socket = socketIOClient('localhost:5000');
+var socket = socketIOClient('localhost:5000');
+if (process.env.NODE_ENV === 'production') {
+    socket = socketIOClient(`https://trador.herokuapp.com:${process.env.PORT}`);    
+}
 
 class ChatRoom extends Component {
     state = {
